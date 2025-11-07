@@ -16,6 +16,13 @@ export interface InflationResult {
   cpiEnd: number;
   startYear: number;
   endYear: number;
+  yearByYear: YearlyInflation[];
+}
+
+export interface YearlyInflation {
+  year: number;
+  cpi: number;
+  value: number;
 }
 
 export interface TreasuryInvestmentResult {

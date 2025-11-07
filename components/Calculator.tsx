@@ -1,6 +1,19 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import GrowthChart from './GrowthChart';
+
+interface YearlyInflation {
+  year: number;
+  cpi: number;
+  value: number;
+}
+
+interface YearlyReturn {
+  year: number;
+  rate: number;
+  value: number;
+}
 
 interface CalculationResult {
   inflation: {
@@ -11,6 +24,7 @@ interface CalculationResult {
     cpiEnd: number;
     startYear: number;
     endYear: number;
+    yearByYear: YearlyInflation[];
   };
   investment: {
     originalAmount: number;
@@ -20,6 +34,7 @@ interface CalculationResult {
     averageRate: number;
     startYear: number;
     endYear: number;
+    yearByYear: YearlyReturn[];
   };
   comparison: {
     realGain: number;
@@ -181,6 +196,13 @@ export default function Calculator() {
                 CPI: {result.inflation.cpiStart} → {result.inflation.cpiEnd}
               </div>
             </div>
+
+            <GrowthChart
+              title="Inflation Growth Over Time"
+              data={result.inflation.yearByYear.map(y => ({ year: y.year, value: y.value }))}
+              color="rgb(220, 38, 38)"
+              startingAmount={result.inflation.originalAmount}
+            />
           </div>
 
           {/* Investment Result */}
@@ -213,6 +235,13 @@ export default function Calculator() {
                 Avg. annual rate: {result.investment.averageRate.toFixed(2)}%
               </div>
             </div>
+
+            <GrowthChart
+              title="Investment Growth Over Time"
+              data={result.investment.yearByYear.map(y => ({ year: y.year, value: y.value }))}
+              color="rgb(22, 163, 74)"
+              startingAmount={result.investment.originalAmount}
+            />
           </div>
         </div>
       )}
