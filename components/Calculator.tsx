@@ -127,6 +127,7 @@ export default function Calculator() {
               max={endYear - 1}
               value={startYear}
               onChange={(e) => setStartYear(parseInt(e.target.value) || 1970)}
+              placeholder="1947-2025"
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700"
             />
           </div>
@@ -143,6 +144,7 @@ export default function Calculator() {
               max={currentYear}
               value={endYear}
               onChange={(e) => setEndYear(parseInt(e.target.value) || currentYear)}
+              placeholder="1948-2025"
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700"
             />
           </div>
