@@ -135,7 +135,7 @@ export default function Calculator() {
               min="1934"
               max={currentYear}
               value={startYear}
-              onChange={(e) => setStartYear(parseInt(e.target.value) || 1970)}
+              onChange={(e) => setStartYear(e.target.value || '1970')}
               placeholder="1947-2025"
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700"
             />
@@ -152,7 +152,7 @@ export default function Calculator() {
               min="1934"
               max={currentYear}
               value={endYear}
-              onChange={(e) => setEndYear(parseInt(e.target.value) || currentYear)}
+              onChange={(e) => setEndYear(e.target.value || currentYear.toString())}
               placeholder="1948-2025"
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700"
             />
