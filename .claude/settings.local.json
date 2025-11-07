@@ -8,7 +8,10 @@
       "WebFetch(domain:fred.stlouisfed.org)",
       "Bash(node scripts/downloadData.js:*)",
       "Bash(git add:*)",
-      "Bash(git commit -m \"$(cat <<''EOF''\nInitial implementation of Worth Today inflation and investment calculator\n\nImplemented a Next.js application that calculates:\n1. Inflation-adjusted value using historical CPI data\n2. Treasury Bill investment returns with compound interest\n3. Side-by-side comparison showing the difference\n\nFeatures:\n- Downloaded historical data from FRED (1947-2025 for CPI, 1934-2025 for T-Bills)\n- Core calculation logic for inflation adjustment and investment returns\n- REST API endpoint for calculations\n- Interactive UI with real-time calculations\n- Responsive design with dark mode support\n- Data update script for refreshing historical data\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS\nEOF\n)\")"
+      "Bash(git commit -m \"$(cat <<''EOF''\nInitial implementation of Worth Today inflation and investment calculator\n\nImplemented a Next.js application that calculates:\n1. Inflation-adjusted value using historical CPI data\n2. Treasury Bill investment returns with compound interest\n3. Side-by-side comparison showing the difference\n\nFeatures:\n- Downloaded historical data from FRED (1947-2025 for CPI, 1934-2025 for T-Bills)\n- Core calculation logic for inflation adjustment and investment returns\n- REST API endpoint for calculations\n- Interactive UI with real-time calculations\n- Responsive design with dark mode support\n- Data update script for refreshing historical data\n\nTech stack: Next.js 16, React 19, TypeScript, Tailwind CSS\nEOF\n)\")",
+      "Bash(git push:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []
