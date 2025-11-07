@@ -161,3 +161,123 @@ export function getAllCPIData(): CPIData[] {
 export function getAllTreasuryData(): TreasuryBillData[] {
   return treasuryDataTyped.filter((item) => item.TB3MS !== '.');
 }
+
+/**
+ * Get CPI data grouped by year (yearly average)
+ */
+export function getCPIDataByYear(startYear?: number, endYear?: number): Array<{year: number, cpi: number}> {
+  const years = new Set<number>();
+
+  cpiDataTyped
+    .filter((item) => item.CPIAUCSL !== '.')
+    .forEach((item) => {
+      const year = parseInt(item.observation_date.substring(0, 4));
+      years.add(year);
+    });
+
+  const sortedYears = Array.from(years).sort((a, b) => a - b);
+  const filteredYears = sortedYears.filter(year => {
+    if (startYear && year < startYear) return false;
+    if (endYear && year > endYear) return false;
+    return true;
+  });
+
+  return filteredYears.map(year => {
+    // Get average CPI for the year
+    const yearData = cpiDataTyped.filter((item) =>
+      item.observation_date.startsWith(`${year}-`) && item.CPIAUCSL !== '.'
+    );
+
+    const avgCPI = yearData.reduce((sum, item) => sum + parseFloat(item.CPIAUCSL), 0) / yearData.length;
+
+    return {
+      year,
+      cpi: parseFloat(avgCPI.toFixed(2))
+    };
+  });
+}
+
+/**
+ * Get CPI data by month
+ */
+export function getCPIDataByMonth(startYear?: number, endYear?: number): Array<{year: number, month: number, date: string, cpi: number}> {
+  return cpiDataTyped
+    .filter((item) => {
+      if (item.CPIAUCSL === '.') return false;
+
+      const year = parseInt(item.observation_date.substring(0, 4));
+      if (startYear && year < startYear) return false;
+      if (endYear && year > endYear) return false;
+
+      return true;
+    })
+    .map((item) => {
+      const [year, month] = item.observation_date.split('-');
+      return {
+        year: parseInt(year),
+        month: parseInt(month),
+        date: item.observation_date,
+        cpi: parseFloat(parseFloat(item.CPIAUCSL).toFixed(2))
+      };
+    });
+}
+
+/**
+ * Get Treasury Bill data grouped by year (yearly average)
+ */
+export function getTreasuryDataByYear(startYear?: number, endYear?: number): Array<{year: number, rate: number}> {
+  const years = new Set<number>();
+
+  treasuryDataTyped
+    .filter((item) => item.TB3MS !== '.')
+    .forEach((item) => {
+      const year = parseInt(item.observation_date.substring(0, 4));
+      years.add(year);
+    });
+
+  const sortedYears = Array.from(years).sort((a, b) => a - b);
+  const filteredYears = sortedYears.filter(year => {
+    if (startYear && year < startYear) return false;
+    if (endYear && year > endYear) return false;
+    return true;
+  });
+
+  return filteredYears.map(year => {
+    // Get average rate for the year
+    const yearData = treasuryDataTyped.filter((item) =>
+      item.observation_date.startsWith(`${year}-`) && item.TB3MS !== '.'
+    );
+
+    const avgRate = yearData.reduce((sum, item) => sum + parseFloat(item.TB3MS), 0) / yearData.length;
+
+    return {
+      year,
+      rate: parseFloat(avgRate.toFixed(2))
+    };
+  });
+}
+
+/**
+ * Get Treasury Bill data by month
+ */
+export function getTreasuryDataByMonth(startYear?: number, endYear?: number): Array<{year: number, month: number, date: string, rate: number}> {
+  return treasuryDataTyped
+    .filter((item) => {
+      if (item.TB3MS === '.') return false;
+
+      const year = parseInt(item.observation_date.substring(0, 4));
+      if (startYear && year < startYear) return false;
+      if (endYear && year > endYear) return false;
+
+      return true;
+    })
+    .map((item) => {
+      const [year, month] = item.observation_date.split('-');
+      return {
+        year: parseInt(year),
+        month: parseInt(month),
+        date: item.observation_date,
+        rate: parseFloat(parseFloat(item.TB3MS).toFixed(2))
+      };
+    });
+}
