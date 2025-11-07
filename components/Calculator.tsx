@@ -46,8 +46,8 @@ interface CalculationResult {
 export default function Calculator() {
   const currentYear = new Date().getFullYear();
   const [amount, setAmount] = useState<number>(1);
-  const [startYear, setStartYear] = useState<number>(1970);
-  const [endYear, setEndYear] = useState<number>(currentYear);
+  const [startYear, setStartYear] = useState<string>('1970');
+  const [endYear, setEndYear] = useState<string>(currentYear.toString());
   const [result, setResult] = useState<CalculationResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -56,9 +56,18 @@ export default function Calculator() {
     setLoading(true);
     setError(null);
 
+    // Parse year values, skip calculation if empty
+    const startYearNum = parseInt(startYear);
+    const endYearNum = parseInt(endYear);
+
+    if (isNaN(startYearNum) || isNaN(endYearNum)) {
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await fetch(
-        `/api/calculate?amount=${amount}&startYear=${startYear}&endYear=${endYear}`
+        `/api/calculate?amount=${amount}&startYear=${startYearNum}&endYear=${endYearNum}`
       );
 
       const data = await response.json();
@@ -124,9 +133,10 @@ export default function Calculator() {
               id="startYear"
               type="number"
               min="1934"
-              max={endYear - 1}
+              max={currentYear}
               value={startYear}
-              onChange={(e) => setStartYear(parseInt(e.target.value) || 1970)}
+              onChange={(e) => setStartYear(e.target.value)}
+              placeholder={`1934-${currentYear}`}
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700"
             />
           </div>
@@ -139,10 +149,11 @@ export default function Calculator() {
             <input
               id="endYear"
               type="number"
-              min={startYear + 1}
+              min="1934"
               max={currentYear}
               value={endYear}
-              onChange={(e) => setEndYear(parseInt(e.target.value) || currentYear)}
+              onChange={(e) => setEndYear(e.target.value)}
+              placeholder={`1934-${currentYear}`}
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700"
             />
           </div>
