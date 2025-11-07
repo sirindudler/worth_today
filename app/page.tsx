@@ -1,4 +1,5 @@
 import Calculator from '@/components/Calculator';
+import DataTables from '@/components/DataTables';
 
 export default function Home() {
   return (
@@ -17,6 +18,10 @@ export default function Home() {
         </div>
 
         <Calculator />
+
+        <div className="mt-16">
+          <DataTables />
+        </div>
 
         <footer className="mt-12 text-center text-sm text-gray-500 dark:text-gray-500">
           <p>Data sourced from FRED (Federal Reserve Economic Data)</p>
