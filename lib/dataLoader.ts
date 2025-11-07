@@ -61,6 +61,39 @@ export function getTreasuryRateForYear(year: number): number | null {
 }
 
 /**
+ * Get monthly Treasury Bill rates for a specific year and month range
+ * Returns array of {month, rate} objects for month-by-month compounding
+ */
+export function getMonthlyTreasuryRates(startYear: number, startMonth: number, endYear: number, endMonth: number): Array<{year: number, month: number, rate: number}> | null {
+  const monthlyRates: Array<{year: number, month: number, rate: number}> = [];
+
+  for (let year = startYear; year <= endYear; year++) {
+    const monthStart = (year === startYear) ? startMonth : 1;
+    const monthEnd = (year === endYear) ? endMonth : 12;
+
+    for (let month = monthStart; month <= monthEnd; month++) {
+      const monthStr = month.toString().padStart(2, '0');
+      const dateStr = `${year}-${monthStr}-01`;
+
+      const data = treasuryDataTyped.find((item) => item.observation_date === dateStr);
+
+      if (!data || data.TB3MS === '.') {
+        // If we're missing data for any month, return null
+        return null;
+      }
+
+      monthlyRates.push({
+        year,
+        month,
+        rate: parseFloat(data.TB3MS)
+      });
+    }
+  }
+
+  return monthlyRates;
+}
+
+/**
  * Get the available data range for both CPI and Treasury data
  */
 export function getDataRange(): DataRange {

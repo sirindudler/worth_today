@@ -1,4 +1,4 @@
-import { getCPIForYear, getTreasuryRateForYear } from './dataLoader';
+import { getCPIForYear, getTreasuryRateForYear, getMonthlyTreasuryRates } from './dataLoader';
 import { InflationResult, TreasuryInvestmentResult, YearlyReturn, YearlyInflation } from './types';
 
 /**
@@ -56,17 +56,24 @@ export function calculateInflationAdjustment(
 
 /**
  * Calculate Treasury Bill investment returns
- * Compounds the yearly returns using historical T-Bill rates
+ * Compounds month-by-month using actual historical T-Bill rates for accuracy
  */
 export function calculateTreasuryInvestment(
   amount: number,
   startYear: number,
   endYear: number
 ): TreasuryInvestmentResult | null {
+  // Get all monthly rates for the period (starting from January, ending in December)
+  const monthlyRates = getMonthlyTreasuryRates(startYear, 1, endYear, 12);
+
+  if (!monthlyRates || monthlyRates.length === 0) {
+    return null;
+  }
+
   let currentValue = amount;
   const yearByYear: YearlyReturn[] = [];
   let totalRates = 0;
-  let rateCount = 0;
+  let lastCompletedYear = startYear - 1;
 
   // Add the starting year value
   yearByYear.push({
@@ -75,35 +82,53 @@ export function calculateTreasuryInvestment(
     value: parseFloat(amount.toFixed(2)),
   });
 
-  // Compound each year's return
-  for (let year = startYear; year < endYear; year++) {
-    const rate = getTreasuryRateForYear(year);
+  // Compound month-by-month
+  for (const monthData of monthlyRates) {
+    const { year, month, rate } = monthData;
 
-    if (rate === null) {
-      // If we encounter a year with no data, we can't continue
-      return null;
-    }
+    // Annual rate to monthly rate: divide by 12, then convert to decimal
+    // e.g., 5.25% annual -> 5.25/12 = 0.4375% monthly -> 0.004375 decimal
+    const monthlyRateDecimal = rate / 12 / 100;
 
-    // Convert percentage to decimal (e.g., 5.5% becomes 0.055)
-    const rateDecimal = rate / 100;
-
-    // Apply this year's return
-    currentValue = currentValue * (1 + rateDecimal);
-
-    yearByYear.push({
-      year: year + 1,
-      rate: parseFloat(rate.toFixed(2)),
-      value: parseFloat(currentValue.toFixed(2)),
-    });
+    // Apply this month's return
+    currentValue = currentValue * (1 + monthlyRateDecimal);
 
     totalRates += rate;
-    rateCount++;
+
+    // At the end of each year (December), record the year-end value
+    if (month === 12 && year > lastCompletedYear) {
+      // Calculate the average rate for this year
+      const yearRates = monthlyRates.filter(m => m.year === year);
+      const yearAvgRate = yearRates.reduce((sum, m) => sum + m.rate, 0) / yearRates.length;
+
+      yearByYear.push({
+        year: year,
+        rate: parseFloat(yearAvgRate.toFixed(2)),
+        value: parseFloat(currentValue.toFixed(2)),
+      });
+
+      lastCompletedYear = year;
+    }
+  }
+
+  // If the end year hasn't been added yet (partial year), add it
+  if (lastCompletedYear < endYear) {
+    const yearRates = monthlyRates.filter(m => m.year === endYear);
+    const yearAvgRate = yearRates.length > 0
+      ? yearRates.reduce((sum, m) => sum + m.rate, 0) / yearRates.length
+      : 0;
+
+    yearByYear.push({
+      year: endYear,
+      rate: parseFloat(yearAvgRate.toFixed(2)),
+      value: parseFloat(currentValue.toFixed(2)),
+    });
   }
 
   const finalValue = currentValue;
   const totalReturn = finalValue - amount;
   const totalReturnPercentage = ((finalValue - amount) / amount) * 100;
-  const averageRate = rateCount > 0 ? totalRates / rateCount : 0;
+  const averageRate = monthlyRates.length > 0 ? totalRates / monthlyRates.length : 0;
 
   return {
     originalAmount: amount,
