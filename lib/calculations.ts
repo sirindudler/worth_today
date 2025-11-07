@@ -1,5 +1,5 @@
 import { getCPIForYear, getTreasuryRateForYear } from './dataLoader';
-import { InflationResult, TreasuryInvestmentResult, YearlyReturn } from './types';
+import { InflationResult, TreasuryInvestmentResult, YearlyReturn, YearlyInflation } from './types';
 
 /**
  * Calculate inflation-adjusted value
@@ -23,6 +23,25 @@ export function calculateInflationAdjustment(
   // Calculate the total inflation rate as a percentage
   const inflationRate = ((cpiEnd - cpiStart) / cpiStart) * 100;
 
+  // Calculate year-by-year inflation values
+  const yearByYear: YearlyInflation[] = [];
+
+  for (let year = startYear; year <= endYear; year++) {
+    const cpiForYear = getCPIForYear(year);
+
+    if (cpiForYear === null) {
+      return null;
+    }
+
+    const valueForYear = amount * (cpiForYear / cpiStart);
+
+    yearByYear.push({
+      year,
+      cpi: parseFloat(cpiForYear.toFixed(2)),
+      value: parseFloat(valueForYear.toFixed(2)),
+    });
+  }
+
   return {
     originalAmount: amount,
     adjustedValue: parseFloat(adjustedValue.toFixed(2)),
@@ -31,6 +50,7 @@ export function calculateInflationAdjustment(
     cpiEnd: parseFloat(cpiEnd.toFixed(2)),
     startYear,
     endYear,
+    yearByYear,
   };
 }
 
@@ -48,6 +68,13 @@ export function calculateTreasuryInvestment(
   let totalRates = 0;
   let rateCount = 0;
 
+  // Add the starting year value
+  yearByYear.push({
+    year: startYear,
+    rate: 0,
+    value: parseFloat(amount.toFixed(2)),
+  });
+
   // Compound each year's return
   for (let year = startYear; year < endYear; year++) {
     const rate = getTreasuryRateForYear(year);
@@ -64,7 +91,7 @@ export function calculateTreasuryInvestment(
     currentValue = currentValue * (1 + rateDecimal);
 
     yearByYear.push({
-      year,
+      year: year + 1,
       rate: parseFloat(rate.toFixed(2)),
       value: parseFloat(currentValue.toFixed(2)),
     });

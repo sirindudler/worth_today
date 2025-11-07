@@ -1,0 +1,123 @@
+'use client';
+
+import { useState } from 'react';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+);
+
+interface DataPoint {
+  year: number;
+  value: number;
+}
+
+interface GrowthChartProps {
+  title: string;
+  data: DataPoint[];
+  color: string;
+  startingAmount: number;
+}
+
+export default function GrowthChart({ title, data, color, startingAmount }: GrowthChartProps) {
+  const [isExpanded, setIsExpanded] = useState(true);
+
+  const chartData = {
+    labels: data.map((d) => d.year.toString()),
+    datasets: [
+      {
+        label: 'Value ($)',
+        data: data.map((d) => d.value),
+        borderColor: color,
+        backgroundColor: `${color}33`,
+        fill: true,
+        tension: 0.1,
+        pointRadius: data.length > 50 ? 0 : 3,
+        pointHoverRadius: 5,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 2,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: false,
+      },
+      tooltip: {
+        callbacks: {
+          label: function (context: any) {
+            return `Value: $${context.parsed.y.toLocaleString('en-US', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}`;
+          },
+        },
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: false,
+        ticks: {
+          callback: function (value: any) {
+            return '$' + value.toLocaleString('en-US');
+          },
+        },
+        title: {
+          display: true,
+          text: 'Value ($)',
+        },
+      },
+      x: {
+        title: {
+          display: true,
+          text: 'Year',
+        },
+        ticks: {
+          maxTicksLimit: 15,
+        },
+      },
+    },
+  };
+
+  return (
+    <div className="mt-4 border-t pt-4">
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="flex items-center justify-between w-full text-left font-semibold text-sm mb-3 hover:opacity-70 transition-opacity"
+      >
+        <span>{title}</span>
+        <span className="text-lg">{isExpanded ? '▼' : '▶'}</span>
+      </button>
+
+      {isExpanded && (
+        <div className="bg-white dark:bg-gray-900 p-4 rounded-lg">
+          <Line data={chartData} options={options} />
+        </div>
+      )}
+    </div>
+  );
+}
