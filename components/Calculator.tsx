@@ -217,28 +217,6 @@ export default function Calculator() {
         </div>
       )}
 
-      {/* Comparison */}
-      {result && !loading && (
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg shadow-lg p-6 border border-blue-100 dark:border-blue-800">
-          <h3 className="text-2xl font-bold mb-4 text-blue-900 dark:text-blue-100">
-            The Verdict
-          </h3>
-          <div className="text-center">
-            <p className="text-lg mb-2 text-gray-700 dark:text-gray-300">
-              By investing in Treasury Bills instead of holding cash, you would have gained an additional:
-            </p>
-            <p className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">
-              {formatCurrency(result.comparison.realGain)}
-            </p>
-            <p className="text-xl text-gray-600 dark:text-gray-400">
-              That's {result.comparison.realGainPercentage.toFixed(2)}% more purchasing power!
-            </p>
-            <p className="mt-4 text-sm text-gray-500 dark:text-gray-500">
-              Holding cash lost {result.inflation.inflationRate.toFixed(2)}% to inflation, while investing gained {result.investment.totalReturnPercentage.toFixed(2)}%.
-            </p>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
