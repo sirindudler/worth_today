@@ -197,12 +197,14 @@ export default function Calculator() {
               </div>
             </div>
 
-            <GrowthChart
-              title="Inflation Growth Over Time"
-              data={result.inflation.yearByYear.map(y => ({ year: y.year, value: y.value }))}
-              color="rgb(220, 38, 38)"
-              startingAmount={result.inflation.originalAmount}
-            />
+            {result.inflation.yearByYear && result.inflation.yearByYear.length > 0 && (
+              <GrowthChart
+                title="Inflation Growth Over Time"
+                data={result.inflation.yearByYear.map(y => ({ year: y.year, value: y.value }))}
+                color="rgb(220, 38, 38)"
+                startingAmount={result.inflation.originalAmount}
+              />
+            )}
           </div>
 
           {/* Investment Result */}
@@ -236,12 +238,14 @@ export default function Calculator() {
               </div>
             </div>
 
-            <GrowthChart
-              title="Investment Growth Over Time"
-              data={result.investment.yearByYear.map(y => ({ year: y.year, value: y.value }))}
-              color="rgb(22, 163, 74)"
-              startingAmount={result.investment.originalAmount}
-            />
+            {result.investment.yearByYear && result.investment.yearByYear.length > 0 && (
+              <GrowthChart
+                title="Investment Growth Over Time"
+                data={result.investment.yearByYear.map(y => ({ year: y.year, value: y.value }))}
+                color="rgb(22, 163, 74)"
+                startingAmount={result.investment.originalAmount}
+              />
+            )}
           </div>
         </div>
       )}
