@@ -37,13 +37,13 @@ export default function DataTables() {
   }, [viewMode, yearRange]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Controls */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <h2 className="text-2xl font-bold">Historical Data</h2>
+          <h2 className="text-xl sm:text-2xl font-bold">Historical Data</h2>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             {/* Year Range Inputs */}
             <div className="flex items-center gap-2">
               <label htmlFor="startYear" className="text-sm font-medium whitespace-nowrap">
@@ -56,7 +56,7 @@ export default function DataTables() {
                 max={yearRange.end}
                 value={yearRange.start}
                 onChange={(e) => setYearRange(prev => ({ ...prev, start: parseInt(e.target.value) || prev.start }))}
-                className="w-24 px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-sm"
+                className="w-28 sm:w-24 px-3 py-2 sm:py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-sm"
               />
             </div>
             <div className="flex items-center gap-2">
@@ -70,7 +70,7 @@ export default function DataTables() {
                 max={new Date().getFullYear()}
                 value={yearRange.end}
                 onChange={(e) => setYearRange(prev => ({ ...prev, end: parseInt(e.target.value) || prev.end }))}
-                className="w-24 px-3 py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-sm"
+                className="w-28 sm:w-24 px-3 py-2 sm:py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-sm"
               />
             </div>
 
@@ -78,7 +78,7 @@ export default function DataTables() {
             <div className="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
               <button
                 onClick={() => setViewMode('yearly')}
-                className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                className={`px-4 py-2 sm:py-1.5 rounded-md text-sm font-medium transition-colors touch-manipulation ${
                   viewMode === 'yearly'
                     ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
@@ -88,7 +88,7 @@ export default function DataTables() {
               </button>
               <button
                 onClick={() => setViewMode('monthly')}
-                className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                className={`px-4 py-2 sm:py-1.5 rounded-md text-sm font-medium transition-colors touch-manipulation ${
                   viewMode === 'monthly'
                     ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
@@ -102,15 +102,15 @@ export default function DataTables() {
       </div>
 
       {/* Tables */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* CPI Table */}
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-          <div className="bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-4">
-            <h3 className="text-xl font-bold text-white">
+          <div className="bg-gradient-to-r from-blue-500 to-purple-500 px-4 sm:px-6 py-3 sm:py-4">
+            <h3 className="text-lg sm:text-xl font-bold text-white">
               Consumer Price Index (CPI)
             </h3>
           </div>
-          <div className="overflow-auto max-h-[600px]">
+          <div className="overflow-auto max-h-[400px] sm:max-h-[600px]">
             <table className="w-full">
               <thead className="bg-gray-50 dark:bg-gray-700 sticky top-0">
                 <tr>
@@ -166,12 +166,12 @@ export default function DataTables() {
 
         {/* Treasury Bills Table */}
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-          <div className="bg-gradient-to-r from-green-500 to-emerald-500 px-6 py-4">
-            <h3 className="text-xl font-bold text-white">
+          <div className="bg-gradient-to-r from-green-500 to-emerald-500 px-4 sm:px-6 py-3 sm:py-4">
+            <h3 className="text-lg sm:text-xl font-bold text-white">
               3-Month Treasury Bill Rates
             </h3>
           </div>
-          <div className="overflow-auto max-h-[600px]">
+          <div className="overflow-auto max-h-[400px] sm:max-h-[600px]">
             <table className="w-full">
               <thead className="bg-gray-50 dark:bg-gray-700 sticky top-0">
                 <tr>

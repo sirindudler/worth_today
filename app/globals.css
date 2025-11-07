@@ -18,10 +18,45 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  /* Improve font rendering on mobile */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent text size adjustment after orientation change on mobile */
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Improve touch targets for better mobile UX */
+button,
+a,
+input[type="button"],
+input[type="submit"],
+label[for] {
+  cursor: pointer;
+}
+
+/* Better input styling for mobile */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Improve scrolling on iOS */
+* {
+  -webkit-overflow-scrolling: touch;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Add touch-manipulation utility for better mobile interactions */
+  .touch-manipulation {
+    touch-action: manipulation;
   }
 }
