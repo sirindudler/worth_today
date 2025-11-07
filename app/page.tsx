@@ -1,5 +1,6 @@
 import Calculator from '@/components/Calculator';
 import DataTables from '@/components/DataTables';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -14,6 +15,12 @@ export default function Home() {
           <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-500 px-4">
             Compare inflation vs. Treasury Bill investment returns using historical data
           </p>
+          <Link
+            href="/about"
+            className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium"
+          >
+            Learn more about this calculator →
+          </Link>
         </div>
 
         <Calculator />
