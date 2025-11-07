@@ -50,7 +50,7 @@ export default function GrowthChart({ title, data, color, startingAmount }: Grow
         backgroundColor: `${color}33`,
         fill: true,
         tension: 0.1,
-        pointRadius: data.length > 50 ? 0 : 3,
+        pointRadius: data.length > 50 ? 0 : 2,
         pointHoverRadius: 5,
       },
     ],
@@ -59,7 +59,7 @@ export default function GrowthChart({ title, data, color, startingAmount }: Grow
   const options = {
     responsive: true,
     maintainAspectRatio: true,
-    aspectRatio: 2,
+    aspectRatio: typeof window !== 'undefined' && window.innerWidth < 640 ? 1.2 : 2,
     plugins: {
       legend: {
         display: false,
@@ -97,7 +97,8 @@ export default function GrowthChart({ title, data, color, startingAmount }: Grow
           text: 'Year',
         },
         ticks: {
-          maxTicksLimit: 15,
+          maxTicksLimit: typeof window !== 'undefined' && window.innerWidth < 640 ? 8 : 15,
+          autoSkip: true,
         },
       },
     },
@@ -107,14 +108,14 @@ export default function GrowthChart({ title, data, color, startingAmount }: Grow
     <div className="mt-4 border-t pt-4">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="flex items-center justify-between w-full text-left font-semibold text-sm mb-3 hover:opacity-70 transition-opacity"
+        className="flex items-center justify-between w-full text-left font-semibold text-xs sm:text-sm mb-3 hover:opacity-70 transition-opacity touch-manipulation"
       >
         <span>{title}</span>
-        <span className="text-lg">{isExpanded ? '▼' : '▶'}</span>
+        <span className="text-base sm:text-lg">{isExpanded ? '▼' : '▶'}</span>
       </button>
 
       {isExpanded && (
-        <div className="bg-white dark:bg-gray-900 p-4 rounded-lg">
+        <div className="bg-white dark:bg-gray-900 p-2 sm:p-4 rounded-lg">
           <Line data={chartData} options={options} />
         </div>
       )}

@@ -4,14 +4,14 @@ import DataTables from '@/components/DataTables';
 export default function Home() {
   return (
     <main className="min-h-screen p-4 sm:p-8 pb-20 bg-gray-50 dark:bg-gray-900">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Worth Today
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 mb-2">
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-2 px-4">
             Calculate the real value of money over time
           </p>
-          <p className="text-sm text-gray-500 dark:text-gray-500">
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-500 px-4">
             Compare inflation vs. Treasury Bill investment returns using historical data
           </p>
         </div>
@@ -22,7 +22,7 @@ export default function Home() {
           <DataTables />
         </div>
 
-        <footer className="mt-12 text-center text-sm text-gray-500 dark:text-gray-500">
+        <footer className="mt-12 text-center text-xs sm:text-sm text-gray-500 dark:text-gray-500 px-4">
           <p>Data sourced from FRED (Federal Reserve Economic Data)</p>
           <p className="mt-1">CPI: Consumer Price Index | T-Bills: 3-Month Treasury Bill Rates</p>
         </footer>
