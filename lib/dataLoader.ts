@@ -9,6 +9,7 @@ const treasuryDataTyped = treasuryData as TreasuryBillData[];
 /**
  * Get CPI value for a specific year (using December value of that year)
  * If December is not available, use the last available month for that year
+ * This handles partial years (e.g., current year with incomplete data)
  */
 export function getCPIForYear(year: number): number | null {
   // Try to find December data for the year
@@ -26,9 +27,11 @@ export function getCPIForYear(year: number): number | null {
   );
 
   if (yearData.length > 0) {
-    const lastMonth = yearData[yearData.length - 1];
-    if (lastMonth.CPIAUCSL !== '.') {
-      return parseFloat(lastMonth.CPIAUCSL);
+    // Find the last entry with valid data
+    for (let i = yearData.length - 1; i >= 0; i--) {
+      if (yearData[i].CPIAUCSL !== '.') {
+        return parseFloat(yearData[i].CPIAUCSL);
+      }
     }
   }
 
@@ -63,6 +66,7 @@ export function getTreasuryRateForYear(year: number): number | null {
 /**
  * Get monthly Treasury Bill rates for a specific year and month range
  * Returns array of {month, rate} objects for month-by-month compounding
+ * If end month data is missing, it will return data up to the last available month
  */
 export function getMonthlyTreasuryRates(startYear: number, startMonth: number, endYear: number, endMonth: number): Array<{year: number, month: number, rate: number}> | null {
   const monthlyRates: Array<{year: number, month: number, rate: number}> = [];
@@ -78,7 +82,12 @@ export function getMonthlyTreasuryRates(startYear: number, startMonth: number, e
       const data = treasuryDataTyped.find((item) => item.observation_date === dateStr);
 
       if (!data || data.TB3MS === '.') {
-        // If we're missing data for any month, return null
+        // For the end year, if we're missing data, stop at the last available month
+        // This allows calculations for partial years (e.g., current year)
+        if (year === endYear && monthlyRates.length > 0) {
+          return monthlyRates;
+        }
+        // For years in the middle of the range, missing data is an error
         return null;
       }
 
