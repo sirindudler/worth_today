@@ -46,8 +46,13 @@ interface CalculationResult {
 export default function Calculator() {
   const currentYear = new Date().getFullYear();
   const [amount, setAmount] = useState<number>(1);
-  const [startYear, setStartYear] = useState<string>('1970');
-  const [endYear, setEndYear] = useState<string>(currentYear.toString());
+
+  // Separate input values (can be empty) from actual valid values used for calculation
+  const [startYearInput, setStartYearInput] = useState<string>('1970');
+  const [endYearInput, setEndYearInput] = useState<string>(currentYear.toString());
+  const [startYear, setStartYear] = useState<number>(1970);
+  const [endYear, setEndYear] = useState<number>(currentYear);
+
   const [result, setResult] = useState<CalculationResult | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -56,38 +61,46 @@ export default function Calculator() {
     setLoading(true);
     setError(null);
 
-    // Parse year values, skip calculation if empty
-    const startYearNum = parseInt(startYear);
-    const endYearNum = parseInt(endYear);
-
-    if (isNaN(startYearNum) || isNaN(endYearNum)) {
-      setLoading(false);
-      return;
-    }
-
     try {
       const response = await fetch(
-        `/api/calculate?amount=${amount}&startYear=${startYearNum}&endYear=${endYearNum}`
+        `/api/calculate?amount=${amount}&startYear=${startYear}&endYear=${endYear}`
       );
 
       const data = await response.json();
 
       if (!response.ok) {
         setError(data.error || 'Failed to calculate');
-        setResult(null);
+        // Don't clear result - keep last valid result displayed
         return;
       }
 
       setResult(data);
     } catch (err) {
       setError('An error occurred while calculating');
-      setResult(null);
+      // Don't clear result - keep last valid result displayed
     } finally {
       setLoading(false);
     }
   };
 
-  // Calculate on component mount and when inputs change
+  // Update valid year values when input changes to a valid number
+  const handleStartYearChange = (value: string) => {
+    setStartYearInput(value);
+    const num = parseInt(value);
+    if (!isNaN(num) && num >= 1934 && num <= currentYear) {
+      setStartYear(num);
+    }
+  };
+
+  const handleEndYearChange = (value: string) => {
+    setEndYearInput(value);
+    const num = parseInt(value);
+    if (!isNaN(num) && num >= 1934 && num <= currentYear) {
+      setEndYear(num);
+    }
+  };
+
+  // Calculate on component mount and when valid inputs change
   useEffect(() => {
     handleCalculate();
   }, [amount, startYear, endYear]);
@@ -134,10 +147,10 @@ export default function Calculator() {
               type="number"
               min="1934"
               max={currentYear}
-              value={startYear}
-              onChange={(e) => setStartYear(e.target.value || '1970')}
-              placeholder="1947-2025"
-              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-base"
+              value={startYearInput}
+              onChange={(e) => handleStartYearChange(e.target.value)}
+              placeholder="e.g., 1970"
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700"
             />
           </div>
 
@@ -151,10 +164,10 @@ export default function Calculator() {
               type="number"
               min="1934"
               max={currentYear}
-              value={endYear}
-              onChange={(e) => setEndYear(e.target.value || currentYear.toString())}
-              placeholder="1948-2025"
-              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-base"
+              value={endYearInput}
+              onChange={(e) => handleEndYearChange(e.target.value)}
+              placeholder={`e.g., ${currentYear}`}
+              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700"
             />
           </div>
         </div>
