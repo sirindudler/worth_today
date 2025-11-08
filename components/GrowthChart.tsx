@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,6 +13,7 @@ import {
   Filler,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { useTheme } from './ThemeProvider';
 
 ChartJS.register(
   CategoryScale,
@@ -39,6 +40,17 @@ interface GrowthChartProps {
 
 export default function GrowthChart({ title, data, color, startingAmount }: GrowthChartProps) {
   const [isExpanded, setIsExpanded] = useState(true);
+  const { theme } = useTheme();
+  const [, setRenderTrigger] = useState(0);
+
+  // Force re-render when theme changes to update chart colors
+  useEffect(() => {
+    setRenderTrigger(prev => prev + 1);
+  }, [theme]);
+
+  const isDarkMode = theme === 'dark';
+  const textColor = isDarkMode ? '#e5e7eb' : '#171717';
+  const gridColor = isDarkMode ? '#374151' : '#e5e7eb';
 
   const chartData = {
     labels: data.map((d) => d.year.toString()),
@@ -76,12 +88,17 @@ export default function GrowthChart({ title, data, color, startingAmount }: Grow
             })}`;
           },
         },
+        backgroundColor: isDarkMode ? 'rgba(30, 30, 30, 0.9)' : 'rgba(0, 0, 0, 0.8)',
+        titleColor: textColor,
+        bodyColor: textColor,
+        borderColor: gridColor,
       },
     },
     scales: {
       y: {
         beginAtZero: false,
         ticks: {
+          color: textColor,
           callback: function (value: any) {
             return '$' + value.toLocaleString('en-US');
           },
@@ -89,16 +106,25 @@ export default function GrowthChart({ title, data, color, startingAmount }: Grow
         title: {
           display: true,
           text: 'Value ($)',
+          color: textColor,
+        },
+        grid: {
+          color: gridColor,
         },
       },
       x: {
         title: {
           display: true,
           text: 'Year',
+          color: textColor,
         },
         ticks: {
+          color: textColor,
           maxTicksLimit: typeof window !== 'undefined' && window.innerWidth < 640 ? 8 : 15,
           autoSkip: true,
+        },
+        grid: {
+          color: gridColor,
         },
       },
     },
