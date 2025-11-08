@@ -1,12 +1,20 @@
 import cpiData from '@/data/cpi.json';
 import treasuryData from '@/data/treasury-bills.json';
-import tipsData from '@/data/tips.json';
 import { CPIData, TreasuryBillData, TIPSData, DataRange } from './types';
 
 // Type the imported data
 const cpiDataTyped = cpiData as CPIData[];
 const treasuryDataTyped = treasuryData as TreasuryBillData[];
-const tipsDataTyped = tipsData as TIPSData[];
+
+// TIPS data is optional - import only if available
+let tipsDataTyped: TIPSData[] = [];
+try {
+  const tipsData = require('@/data/tips.json');
+  tipsDataTyped = tipsData as TIPSData[];
+} catch (e) {
+  // TIPS data not available - feature will be disabled
+  console.warn('TIPS data not available. TIPS calculations will be disabled.');
+}
 
 /**
  * Get CPI value for a specific year (using December value of that year)
@@ -108,6 +116,8 @@ export function getMonthlyTreasuryRates(startYear: number, startMonth: number, e
  * Get average TIPS real yield for a specific year (annual average)
  */
 export function getTIPSRateForYear(year: number): number | null {
+  if (tipsDataTyped.length === 0) return null;
+
   const yearData = tipsDataTyped.filter((item) =>
     item.DATE.startsWith(`${year}-`)
   );
@@ -135,6 +145,8 @@ export function getTIPSRateForYear(year: number): number | null {
  * If end month data is missing, it will return data up to the last available month
  */
 export function getMonthlyTIPSRates(startYear: number, startMonth: number, endYear: number, endMonth: number): Array<{year: number, month: number, rate: number}> | null {
+  if (tipsDataTyped.length === 0) return null;
+
   const monthlyRates: Array<{year: number, month: number, rate: number}> = [];
 
   for (let year = startYear; year <= endYear; year++) {
@@ -196,13 +208,20 @@ export function getDataRange(): DataRange {
   const tbillMinYear = Math.min(...tbillYears);
   const tbillMaxYear = Math.max(...tbillYears);
 
-  // Get TIPS range
-  const tipsYears = tipsDataTyped
-    .filter((item) => item.DFII10 !== '.')
-    .map((item) => parseInt(item.DATE.substring(0, 4)));
+  // Get TIPS range (if available)
+  let tipsMinYear = 0;
+  let tipsMaxYear = 0;
 
-  const tipsMinYear = Math.min(...tipsYears);
-  const tipsMaxYear = Math.max(...tipsYears);
+  if (tipsDataTyped.length > 0) {
+    const tipsYears = tipsDataTyped
+      .filter((item) => item.DFII10 !== '.')
+      .map((item) => parseInt(item.DATE.substring(0, 4)));
+
+    if (tipsYears.length > 0) {
+      tipsMinYear = Math.min(...tipsYears);
+      tipsMaxYear = Math.max(...tipsYears);
+    }
+  }
 
   return {
     minYear: Math.max(cpiMinYear, tbillMinYear), // Overall min (for both calculators)
@@ -236,8 +255,9 @@ export function isValidTreasuryYear(year: number): boolean {
  * Check if a year is within the valid range for TIPS data
  */
 export function isValidTIPSYear(year: number): boolean {
+  if (tipsDataTyped.length === 0) return false;
   const range = getDataRange();
-  return year >= range.tipsMinYear && year <= range.tipsMaxYear;
+  return year >= range.tipsMinYear && year <= range.tipsMaxYear && range.tipsMinYear > 0;
 }
 
 /**
