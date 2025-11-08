@@ -49,8 +49,8 @@ export default function GrowthChart({ title, data, color, startingAmount }: Grow
   }, [theme]);
 
   const isDarkMode = theme === 'dark';
-  const textColor = isDarkMode ? '#e5e7eb' : '#000000';
-  const gridColor = isDarkMode ? '#374151' : '#d1d5db';
+  const textColor = isDarkMode ? '#e5e7eb' : '#4b5563';
+  const gridColor = isDarkMode ? '#374151' : '#f0f1f3';
 
   const chartData = {
     labels: data.map((d) => d.year.toString()),
@@ -59,7 +59,7 @@ export default function GrowthChart({ title, data, color, startingAmount }: Grow
         label: 'Value ($)',
         data: data.map((d) => d.value),
         borderColor: color,
-        backgroundColor: `${color}33`,
+        backgroundColor: isDarkMode ? `${color}33` : `${color}15`,
         fill: true,
         tension: 0.1,
         pointRadius: data.length > 50 ? 0 : 2,
@@ -89,8 +89,8 @@ export default function GrowthChart({ title, data, color, startingAmount }: Grow
           },
         },
         backgroundColor: isDarkMode ? 'rgba(30, 30, 30, 0.9)' : 'rgba(255, 255, 255, 0.95)',
-        titleColor: isDarkMode ? textColor : '#000000',
-        bodyColor: isDarkMode ? textColor : '#000000',
+        titleColor: isDarkMode ? textColor : '#1f2937',
+        bodyColor: isDarkMode ? textColor : '#1f2937',
         borderColor: gridColor,
       },
     },
@@ -141,7 +141,7 @@ export default function GrowthChart({ title, data, color, startingAmount }: Grow
       </button>
 
       {isExpanded && (
-        <div className="bg-gray-50 dark:bg-gray-900 p-2 sm:p-4 rounded-lg">
+        <div className="bg-white dark:bg-gray-900 p-2 sm:p-4 rounded-lg">
           <Line data={chartData} options={options} />
         </div>
       )}
