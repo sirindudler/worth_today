@@ -37,16 +37,16 @@ export default function DataTables() {
   }, [viewMode, yearRange]);
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-6 sm:space-y-8">
       {/* Controls */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <h2 className="text-xl sm:text-2xl font-bold">Historical Data</h2>
+      <div className="bg-card-bg dark:bg-gray-800 rounded-2xl shadow-apple dark:shadow-lg p-6 sm:p-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+          <h2 className="text-2xl sm:text-3xl font-semibold">Historical Data</h2>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             {/* Year Range Inputs */}
-            <div className="flex items-center gap-2">
-              <label htmlFor="startYear" className="text-sm font-medium whitespace-nowrap">
+            <div className="flex items-center gap-3">
+              <label htmlFor="startYear" className="text-sm font-medium text-secondary dark:text-gray-400 whitespace-nowrap">
                 From:
               </label>
               <input
@@ -56,11 +56,11 @@ export default function DataTables() {
                 max={yearRange.end}
                 value={yearRange.start}
                 onChange={(e) => setYearRange(prev => ({ ...prev, start: parseInt(e.target.value) || prev.start }))}
-                className="w-28 sm:w-24 px-3 py-2 sm:py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-sm"
+                className="w-28 sm:w-24 px-3 py-2.5 border border-border dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent bg-white dark:bg-gray-700 text-sm transition-apple"
               />
             </div>
-            <div className="flex items-center gap-2">
-              <label htmlFor="endYear" className="text-sm font-medium whitespace-nowrap">
+            <div className="flex items-center gap-3">
+              <label htmlFor="endYear" className="text-sm font-medium text-secondary dark:text-gray-400 whitespace-nowrap">
                 To:
               </label>
               <input
@@ -70,28 +70,28 @@ export default function DataTables() {
                 max={new Date().getFullYear()}
                 value={yearRange.end}
                 onChange={(e) => setYearRange(prev => ({ ...prev, end: parseInt(e.target.value) || prev.end }))}
-                className="w-28 sm:w-24 px-3 py-2 sm:py-1.5 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-sm"
+                className="w-28 sm:w-24 px-3 py-2.5 border border-border dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent bg-white dark:bg-gray-700 text-sm transition-apple"
               />
             </div>
 
             {/* View Mode Toggle */}
-            <div className="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+            <div className="flex bg-border dark:bg-gray-700 rounded-lg p-1">
               <button
                 onClick={() => setViewMode('yearly')}
-                className={`px-4 py-2 sm:py-1.5 rounded-md text-sm font-medium transition-colors touch-manipulation ${
+                className={`px-4 py-2.5 rounded-md text-sm font-medium transition-apple touch-manipulation ${
                   viewMode === 'yearly'
-                    ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                    ? 'bg-white dark:bg-gray-600 text-foreground dark:text-white shadow-apple-sm'
+                    : 'text-secondary dark:text-gray-400 hover:text-foreground dark:hover:text-white'
                 }`}
               >
                 Yearly
               </button>
               <button
                 onClick={() => setViewMode('monthly')}
-                className={`px-4 py-2 sm:py-1.5 rounded-md text-sm font-medium transition-colors touch-manipulation ${
+                className={`px-4 py-2.5 rounded-md text-sm font-medium transition-apple touch-manipulation ${
                   viewMode === 'monthly'
-                    ? 'bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow'
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                    ? 'bg-white dark:bg-gray-600 text-foreground dark:text-white shadow-apple-sm'
+                    : 'text-secondary dark:text-gray-400 hover:text-foreground dark:hover:text-white'
                 }`}
               >
                 Monthly
@@ -102,11 +102,11 @@ export default function DataTables() {
       </div>
 
       {/* Tables */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
         {/* CPI Table */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-          <div className="bg-gradient-to-r from-blue-500 to-purple-500 px-4 sm:px-6 py-3 sm:py-4">
-            <h3 className="text-lg sm:text-xl font-bold text-white">
+        <div className="bg-card-bg dark:bg-gray-800 rounded-2xl shadow-apple dark:shadow-lg overflow-hidden">
+          <div className="bg-gradient-to-r from-blue-500 to-purple-500 px-6 sm:px-8 py-4 sm:py-5">
+            <h3 className="text-lg sm:text-xl font-semibold text-white">
               Consumer Price Index (CPI)
             </h3>
           </div>
@@ -165,9 +165,9 @@ export default function DataTables() {
         </div>
 
         {/* Treasury Bills Table */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-          <div className="bg-gradient-to-r from-green-500 to-emerald-500 px-4 sm:px-6 py-3 sm:py-4">
-            <h3 className="text-lg sm:text-xl font-bold text-white">
+        <div className="bg-card-bg dark:bg-gray-800 rounded-2xl shadow-apple dark:shadow-lg overflow-hidden">
+          <div className="bg-gradient-to-r from-green-500 to-emerald-500 px-6 sm:px-8 py-4 sm:py-5">
+            <h3 className="text-lg sm:text-xl font-semibold text-white">
               3-Month Treasury Bill Rates
             </h3>
           </div>

@@ -117,13 +117,13 @@ export default function Calculator() {
   return (
     <div className="space-y-8">
       {/* Input Form */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6">
-        <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Calculate Historical Value</h2>
+      <div className="bg-card-bg dark:bg-gray-800 rounded-2xl shadow-apple dark:shadow-lg p-4 sm:p-8">
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-8">Calculate Historical Value</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {/* Amount Input */}
           <div>
-            <label htmlFor="amount" className="block text-sm font-medium mb-2">
+            <label htmlFor="amount" className="block text-sm font-medium text-secondary dark:text-gray-400 mb-3">
               Amount ($)
             </label>
             <input
@@ -133,13 +133,13 @@ export default function Calculator() {
               step="0.01"
               value={amount}
               onChange={(e) => setAmount(parseFloat(e.target.value) || 0)}
-              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-base"
+              className="w-full px-4 py-3 border border-border dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-accent focus:border-transparent bg-white dark:bg-gray-700 text-base transition-apple"
             />
           </div>
 
           {/* Start Year Input */}
           <div>
-            <label htmlFor="startYear" className="block text-sm font-medium mb-2">
+            <label htmlFor="startYear" className="block text-sm font-medium text-secondary dark:text-gray-400 mb-3">
               Start Year
             </label>
             <input
@@ -150,13 +150,13 @@ export default function Calculator() {
               value={startYearInput}
               onChange={(e) => handleStartYearChange(e.target.value)}
               placeholder="e.g., 1970"
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700"
+              className="w-full px-4 py-3 border border-border dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-accent focus:border-transparent bg-white dark:bg-gray-700 transition-apple"
             />
           </div>
 
           {/* End Year Input */}
           <div>
-            <label htmlFor="endYear" className="block text-sm font-medium mb-2">
+            <label htmlFor="endYear" className="block text-sm font-medium text-secondary dark:text-gray-400 mb-3">
               End Year
             </label>
             <input
@@ -167,7 +167,7 @@ export default function Calculator() {
               value={endYearInput}
               onChange={(e) => handleEndYearChange(e.target.value)}
               placeholder={`e.g., ${currentYear}`}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700"
+              className="w-full px-4 py-3 border border-border dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-accent focus:border-transparent bg-white dark:bg-gray-700 transition-apple"
             />
           </div>
         </div>
@@ -175,8 +175,8 @@ export default function Calculator() {
 
       {/* Error Display */}
       {error && (
-        <div className="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4">
-          <p className="text-red-800 dark:text-red-200">{error}</p>
+        <div className="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-2xl p-4 shadow-apple dark:shadow-lg">
+          <p className="text-red-800 dark:text-red-200 font-medium">{error}</p>
         </div>
       )}
 
@@ -189,34 +189,34 @@ export default function Calculator() {
 
       {/* Results */}
       {result && !loading && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {/* Inflation Result */}
-          <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 rounded-lg shadow-lg p-4 sm:p-6 border border-red-100 dark:border-red-800">
-            <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-red-900 dark:text-red-100">
+          <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 rounded-2xl shadow-apple dark:shadow-lg p-6 sm:p-8 border border-red-100 dark:border-red-800">
+            <h3 className="text-lg sm:text-xl font-semibold mb-6 text-red-900 dark:text-red-100">
               Inflation Adjustment
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-6">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Original Amount ({result.inflation.startYear})</p>
-                <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white break-words">
+                <p className="text-sm font-medium text-secondary dark:text-gray-400 mb-2">Original Amount ({result.inflation.startYear})</p>
+                <p className="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-white break-words">
                   {formatCurrency(result.inflation.originalAmount)}
                 </p>
               </div>
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm font-medium text-secondary dark:text-gray-400 mb-2">
                   Equivalent in {result.inflation.endYear}
                 </p>
-                <p className="text-2xl sm:text-3xl font-bold text-red-600 dark:text-red-400 break-words">
+                <p className="text-3xl sm:text-4xl font-bold text-red-600 dark:text-red-400 break-words">
                   {formatCurrency(result.inflation.adjustedValue)}
                 </p>
               </div>
-              <div className="pt-3 border-t border-red-200 dark:border-red-800">
-                <p className="text-sm text-gray-600 dark:text-gray-400">Total Inflation</p>
-                <p className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
+              <div className="pt-6 border-t border-red-200 dark:border-red-800">
+                <p className="text-sm font-medium text-secondary dark:text-gray-400 mb-2">Total Inflation</p>
+                <p className="text-2xl font-semibold text-gray-900 dark:text-white">
                   {result.inflation.inflationRate.toFixed(2)}%
                 </p>
               </div>
-              <div className="text-xs text-gray-500 dark:text-gray-500">
+              <div className="text-xs font-medium text-secondary dark:text-gray-500">
                 CPI: {result.inflation.cpiStart} → {result.inflation.cpiEnd}
               </div>
             </div>
@@ -232,32 +232,32 @@ export default function Calculator() {
           </div>
 
           {/* Investment Result */}
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg shadow-lg p-4 sm:p-6 border border-green-100 dark:border-green-800">
-            <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-green-900 dark:text-green-100">
+          <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl shadow-apple dark:shadow-lg p-6 sm:p-8 border border-green-100 dark:border-green-800">
+            <h3 className="text-lg sm:text-xl font-semibold mb-6 text-green-900 dark:text-green-100">
               Treasury Bill Investment
             </h3>
-            <div className="space-y-3">
+            <div className="space-y-6">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Original Investment ({result.investment.startYear})</p>
-                <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white break-words">
+                <p className="text-sm font-medium text-secondary dark:text-gray-400 mb-2">Original Investment ({result.investment.startYear})</p>
+                <p className="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-white break-words">
                   {formatCurrency(result.investment.originalAmount)}
                 </p>
               </div>
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm font-medium text-secondary dark:text-gray-400 mb-2">
                   Value in {result.investment.endYear}
                 </p>
-                <p className="text-2xl sm:text-3xl font-bold text-green-600 dark:text-green-400 break-words">
+                <p className="text-3xl sm:text-4xl font-bold text-green-600 dark:text-green-400 break-words">
                   {formatCurrency(result.investment.finalValue)}
                 </p>
               </div>
-              <div className="pt-3 border-t border-green-200 dark:border-green-800">
-                <p className="text-sm text-gray-600 dark:text-gray-400">Total Return</p>
-                <p className="text-base sm:text-xl font-semibold text-gray-900 dark:text-white break-words">
+              <div className="pt-6 border-t border-green-200 dark:border-green-800">
+                <p className="text-sm font-medium text-secondary dark:text-gray-400 mb-2">Total Return</p>
+                <p className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white break-words">
                   {formatCurrency(result.investment.totalReturn)} ({result.investment.totalReturnPercentage.toFixed(2)}%)
                 </p>
               </div>
-              <div className="text-xs text-gray-500 dark:text-gray-500">
+              <div className="text-xs font-medium text-secondary dark:text-gray-500">
                 Avg. annual rate: {result.investment.averageRate.toFixed(2)}%
               </div>
             </div>
