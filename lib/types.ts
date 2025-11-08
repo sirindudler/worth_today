@@ -8,11 +8,6 @@ export interface TreasuryBillData {
   TB3MS: string;
 }
 
-export interface TIPSData {
-  DATE: string;
-  DFII10: string;
-}
-
 export interface InflationResult {
   originalAmount: number;
   adjustedValue: number;
@@ -47,19 +42,6 @@ export interface YearlyReturn {
   value: number;
 }
 
-export interface TIPSInvestmentResult {
-  originalAmount: number;
-  finalValue: number;
-  totalReturn: number;
-  totalReturnPercentage: number;
-  averageRealYield: number;
-  inflationAdjustment: number;
-  realReturn: number;
-  startYear: number;
-  endYear: number;
-  yearByYear: YearlyReturn[];
-}
-
 export interface CalculatorInputs {
   amount: number;
   startYear: number;
@@ -73,6 +55,4 @@ export interface DataRange {
   cpiMaxYear: number;
   tbillMinYear: number;
   tbillMaxYear: number;
-  tipsMinYear: number;
-  tipsMaxYear: number;
 }
