@@ -5,7 +5,6 @@ const https = require('https');
 // FRED API URLs for CSV downloads
 const CPI_URL = 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL';
 const TBILL_URL = 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=TB3MS';
-const TIPS_URL = 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFII10';
 
 const DATA_DIR = path.join(__dirname, '..', 'data');
 
@@ -84,10 +83,6 @@ async function main() {
     // Download Treasury Bill data
     const tbillCsvPath = await downloadFile(TBILL_URL, 'treasury-bills.csv');
     await csvToJson(tbillCsvPath, 'treasury-bills.json');
-
-    // Download TIPS data (10-Year Treasury Inflation-Protected Securities)
-    const tipsCsvPath = await downloadFile(TIPS_URL, 'tips.csv');
-    await csvToJson(tipsCsvPath, 'tips.json');
 
     console.log('\n✓ All data downloaded and converted successfully!');
     console.log(`\nData saved to: ${DATA_DIR}`);

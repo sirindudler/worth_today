@@ -36,28 +36,10 @@ interface CalculationResult {
     endYear: number;
     yearByYear: YearlyReturn[];
   };
-  tips?: {
-    originalAmount: number;
-    finalValue: number;
-    totalReturn: number;
-    totalReturnPercentage: number;
-    averageRealYield: number;
-    inflationAdjustment: number;
-    realReturn: number;
-    startYear: number;
-    endYear: number;
-    yearByYear: YearlyReturn[];
-  };
   comparison: {
     realGain: number;
     realGainPercentage: number;
     investmentBeatsInflation: boolean;
-  };
-  tipsComparison?: {
-    realGain: number;
-    realGainPercentage: number;
-    tipsBeatsInflation: boolean;
-    tipsBeatsTBills: boolean;
   };
 }
 
@@ -207,7 +189,7 @@ export default function Calculator() {
 
       {/* Results */}
       {result && !loading && (
-        <div className={`grid grid-cols-1 gap-4 sm:gap-6 ${result.tips ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {/* Inflation Result */}
           <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 rounded-lg shadow-lg p-4 sm:p-6 border border-red-100 dark:border-red-800">
             <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-red-900 dark:text-red-100">
@@ -289,51 +271,6 @@ export default function Calculator() {
               />
             )}
           </div>
-
-          {/* TIPS Investment Result (only shown if data available) */}
-          {result.tips && (
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg shadow-lg p-4 sm:p-6 border border-blue-100 dark:border-blue-800">
-              <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-blue-900 dark:text-blue-100">
-                TIPS Investment
-              </h3>
-              <div className="space-y-3">
-                <div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Original Investment ({result.tips.startYear})</p>
-                  <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white break-words">
-                    {formatCurrency(result.tips.originalAmount)}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Value in {result.tips.endYear}
-                  </p>
-                  <p className="text-2xl sm:text-3xl font-bold text-blue-600 dark:text-blue-400 break-words">
-                    {formatCurrency(result.tips.finalValue)}
-                  </p>
-                </div>
-                <div className="pt-3 border-t border-blue-200 dark:border-blue-800">
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Total Return</p>
-                  <p className="text-base sm:text-xl font-semibold text-gray-900 dark:text-white break-words">
-                    {formatCurrency(result.tips.totalReturn)} ({result.tips.totalReturnPercentage.toFixed(2)}%)
-                  </p>
-                </div>
-                <div className="text-xs text-gray-500 dark:text-gray-500">
-                  Avg. real yield: {result.tips.averageRealYield.toFixed(2)}%
-                  <br />
-                  Inflation adjustment: {result.tips.inflationAdjustment.toFixed(2)}%
-                </div>
-              </div>
-
-              {result.tips.yearByYear && result.tips.yearByYear.length > 0 && (
-                <GrowthChart
-                  title="TIPS Growth Over Time"
-                  data={result.tips.yearByYear.map(y => ({ year: y.year, value: y.value }))}
-                  color="rgb(37, 99, 235)"
-                  startingAmount={result.tips.originalAmount}
-                />
-              )}
-            </div>
-          )}
         </div>
       )}
 
