@@ -12,6 +12,15 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        secondary: "var(--secondary)",
+        border: "var(--border)",
+        accent: "var(--accent)",
+        "card-bg": "var(--card-bg)",
+      },
+      boxShadow: {
+        "apple-sm": "0 1px 2px rgba(0, 0, 0, 0.05)",
+        "apple": "0 2px 8px rgba(0, 0, 0, 0.08)",
+        "apple-lg": "0 8px 24px rgba(0, 0, 0, 0.12)",
       },
     },
   },
