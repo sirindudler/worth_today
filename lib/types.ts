@@ -56,3 +56,15 @@ export interface DataRange {
   tbillMinYear: number;
   tbillMaxYear: number;
 }
+
+export type CountryCode = 'US' | 'CH';
+
+export interface Country {
+  code: CountryCode;
+  name: string;
+  currency: string;
+  currencySymbol: string;
+  inflationLabel: string;
+  investmentLabel: string;
+  investmentDescription: string;
+}

@@ -1,4 +1,5 @@
 import Calculator from '@/components/Calculator';
+import CountrySelector from '@/components/CountrySelector';
 import DataTables from '@/components/DataTables';
 import Link from 'next/link';
 
@@ -15,6 +16,12 @@ export default function Home() {
           <p className="text-sm sm:text-base text-secondary dark:text-gray-500 px-4 max-w-2xl mx-auto mb-6">
             Compare inflation vs. Treasury Bill investment returns using historical data
           </p>
+
+          {/* Country Selector */}
+          <div className="flex justify-center mb-6">
+            <CountrySelector />
+          </div>
+
           <Link
             href="/about"
             className="inline-block text-accent dark:text-blue-400 hover:opacity-80 text-sm font-semibold transition-apple"

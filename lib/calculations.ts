@@ -1,5 +1,5 @@
 import { getCPIForYear, getTreasuryRateForYear, getMonthlyTreasuryRates } from './dataLoader';
-import { InflationResult, TreasuryInvestmentResult, YearlyReturn, YearlyInflation } from './types';
+import { InflationResult, TreasuryInvestmentResult, YearlyReturn, YearlyInflation, CountryCode } from './types';
 
 /**
  * Calculate inflation-adjusted value
@@ -8,10 +8,11 @@ import { InflationResult, TreasuryInvestmentResult, YearlyReturn, YearlyInflatio
 export function calculateInflationAdjustment(
   amount: number,
   startYear: number,
-  endYear: number
+  endYear: number,
+  country: CountryCode = 'US'
 ): InflationResult | null {
-  const cpiStart = getCPIForYear(startYear);
-  const cpiEnd = getCPIForYear(endYear);
+  const cpiStart = getCPIForYear(startYear, country);
+  const cpiEnd = getCPIForYear(endYear, country);
 
   if (cpiStart === null || cpiEnd === null) {
     return null;
@@ -27,7 +28,7 @@ export function calculateInflationAdjustment(
   const yearByYear: YearlyInflation[] = [];
 
   for (let year = startYear; year <= endYear; year++) {
-    const cpiForYear = getCPIForYear(year);
+    const cpiForYear = getCPIForYear(year, country);
 
     if (cpiForYear === null) {
       return null;
@@ -61,10 +62,11 @@ export function calculateInflationAdjustment(
 export function calculateTreasuryInvestment(
   amount: number,
   startYear: number,
-  endYear: number
+  endYear: number,
+  country: CountryCode = 'US'
 ): TreasuryInvestmentResult | null {
   // Get all monthly rates for the period (starting from January, ending in December)
-  const monthlyRates = getMonthlyTreasuryRates(startYear, 1, endYear, 12);
+  const monthlyRates = getMonthlyTreasuryRates(startYear, 1, endYear, 12, country);
 
   if (!monthlyRates || monthlyRates.length === 0) {
     return null;
@@ -148,10 +150,11 @@ export function calculateTreasuryInvestment(
 export function calculateComparison(
   amount: number,
   startYear: number,
-  endYear: number
+  endYear: number,
+  country: CountryCode = 'US'
 ) {
-  const inflation = calculateInflationAdjustment(amount, startYear, endYear);
-  const investment = calculateTreasuryInvestment(amount, startYear, endYear);
+  const inflation = calculateInflationAdjustment(amount, startYear, endYear, country);
+  const investment = calculateTreasuryInvestment(amount, startYear, endYear, country);
 
   if (!inflation || !investment) {
     return null;

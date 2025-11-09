@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useCountry } from '@/contexts/CountryContext';
 import GrowthChart from './GrowthChart';
 
 interface YearlyInflation {
@@ -44,6 +45,7 @@ interface CalculationResult {
 }
 
 export default function Calculator() {
+  const { countryCode, country } = useCountry();
   const currentYear = new Date().getFullYear();
   const [amount, setAmount] = useState<number>(1);
 
@@ -63,7 +65,7 @@ export default function Calculator() {
 
     try {
       const response = await fetch(
-        `/api/calculate?amount=${amount}&startYear=${startYear}&endYear=${endYear}`
+        `/api/calculate?amount=${amount}&startYear=${startYear}&endYear=${endYear}&country=${countryCode}`
       );
 
       const data = await response.json();
@@ -103,12 +105,13 @@ export default function Calculator() {
   // Calculate on component mount and when valid inputs change
   useEffect(() => {
     handleCalculate();
-  }, [amount, startYear, endYear]);
+  }, [amount, startYear, endYear, countryCode]);
 
   const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat('en-US', {
+    const locale = countryCode === 'CH' ? 'de-CH' : 'en-US';
+    return new Intl.NumberFormat(locale, {
       style: 'currency',
-      currency: 'USD',
+      currency: country.currency,
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     }).format(value);
@@ -124,7 +127,7 @@ export default function Calculator() {
           {/* Amount Input */}
           <div>
             <label htmlFor="amount" className="block text-sm font-medium text-secondary dark:text-gray-400 mb-3">
-              Amount ($)
+              Amount ({country.currencySymbol})
             </label>
             <input
               id="amount"
@@ -193,7 +196,7 @@ export default function Calculator() {
           {/* Inflation Result */}
           <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 rounded-2xl shadow-apple dark:shadow-lg p-6 sm:p-8 border border-red-100 dark:border-red-800">
             <h3 className="text-lg sm:text-xl font-semibold mb-6 text-red-900 dark:text-red-100">
-              Inflation Adjustment
+              {country.inflationLabel}
             </h3>
             <div className="space-y-6">
               <div>
@@ -234,7 +237,7 @@ export default function Calculator() {
           {/* Investment Result */}
           <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl shadow-apple dark:shadow-lg p-6 sm:p-8 border border-green-100 dark:border-green-800">
             <h3 className="text-lg sm:text-xl font-semibold mb-6 text-green-900 dark:text-green-100">
-              Treasury Bill Investment
+              {country.investmentLabel}
             </h3>
             <div className="space-y-6">
               <div>

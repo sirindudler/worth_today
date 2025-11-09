@@ -1,19 +1,60 @@
-import cpiData from '@/data/cpi.json';
-import treasuryData from '@/data/treasury-bills.json';
-import { CPIData, TreasuryBillData, DataRange } from './types';
+import cpiDataUS from '@/data/cpi.json';
+import treasuryDataUS from '@/data/treasury-bills.json';
+import cpiDataCH from '@/data/ch/cpi.json';
+import bondsDataCH from '@/data/ch/bonds.json';
+import { CPIData, TreasuryBillData, DataRange, CountryCode } from './types';
 
 // Type the imported data
-const cpiDataTyped = cpiData as CPIData[];
-const treasuryDataTyped = treasuryData as TreasuryBillData[];
+const cpiDataUSTyped = cpiDataUS as CPIData[];
+const treasuryDataUSTyped = treasuryDataUS as TreasuryBillData[];
+
+// Switzerland data uses different field names
+interface SwissCPIData {
+  observation_date: string;
+  CPI: string;
+}
+
+interface SwissBondData {
+  observation_date: string;
+  RATE: string;
+}
+
+const cpiDataCHTyped = cpiDataCH as SwissCPIData[];
+const bondsDataCHTyped = bondsDataCH as SwissBondData[];
+
+// Helper functions to get country-specific data
+function getCPIDataForCountry(country: CountryCode): CPIData[] {
+  if (country === 'CH') {
+    // Convert Swiss CPI format to standard format
+    return cpiDataCHTyped.map(item => ({
+      observation_date: item.observation_date,
+      CPIAUCSL: item.CPI
+    }));
+  }
+  return cpiDataUSTyped;
+}
+
+function getInvestmentDataForCountry(country: CountryCode): TreasuryBillData[] {
+  if (country === 'CH') {
+    // Convert Swiss bond format to standard format
+    return bondsDataCHTyped.map(item => ({
+      observation_date: item.observation_date,
+      TB3MS: item.RATE
+    }));
+  }
+  return treasuryDataUSTyped;
+}
 
 /**
  * Get CPI value for a specific year (using December value of that year)
  * If December is not available, use the last available month for that year
  * This handles partial years (e.g., current year with incomplete data)
  */
-export function getCPIForYear(year: number): number | null {
+export function getCPIForYear(year: number, country: CountryCode = 'US'): number | null {
+  const cpiData = getCPIDataForCountry(country);
+
   // Try to find December data for the year
-  const decemberData = cpiDataTyped.find(
+  const decemberData = cpiData.find(
     (item) => item.observation_date.startsWith(`${year}-12`)
   );
 
@@ -22,7 +63,7 @@ export function getCPIForYear(year: number): number | null {
   }
 
   // If December not found, get the last available month for that year
-  const yearData = cpiDataTyped.filter((item) =>
+  const yearData = cpiData.filter((item) =>
     item.observation_date.startsWith(`${year}-`)
   );
 
@@ -41,8 +82,10 @@ export function getCPIForYear(year: number): number | null {
 /**
  * Get average Treasury Bill rate for a specific year (annual average)
  */
-export function getTreasuryRateForYear(year: number): number | null {
-  const yearData = treasuryDataTyped.filter((item) =>
+export function getTreasuryRateForYear(year: number, country: CountryCode = 'US'): number | null {
+  const investmentData = getInvestmentDataForCountry(country);
+
+  const yearData = investmentData.filter((item) =>
     item.observation_date.startsWith(`${year}-`)
   );
 
@@ -68,7 +111,8 @@ export function getTreasuryRateForYear(year: number): number | null {
  * Returns array of {month, rate} objects for month-by-month compounding
  * If end month data is missing, it will return data up to the last available month
  */
-export function getMonthlyTreasuryRates(startYear: number, startMonth: number, endYear: number, endMonth: number): Array<{year: number, month: number, rate: number}> | null {
+export function getMonthlyTreasuryRates(startYear: number, startMonth: number, endYear: number, endMonth: number, country: CountryCode = 'US'): Array<{year: number, month: number, rate: number}> | null {
+  const investmentData = getInvestmentDataForCountry(country);
   const monthlyRates: Array<{year: number, month: number, rate: number}> = [];
 
   for (let year = startYear; year <= endYear; year++) {
@@ -79,7 +123,7 @@ export function getMonthlyTreasuryRates(startYear: number, startMonth: number, e
       const monthStr = month.toString().padStart(2, '0');
       const dateStr = `${year}-${monthStr}-01`;
 
-      const data = treasuryDataTyped.find((item) => item.observation_date === dateStr);
+      const data = investmentData.find((item) => item.observation_date === dateStr);
 
       if (!data || data.TB3MS === '.') {
         // For the end year, if we're missing data, stop at the last available month
@@ -105,9 +149,12 @@ export function getMonthlyTreasuryRates(startYear: number, startMonth: number, e
 /**
  * Get the available data range for both CPI and Treasury data
  */
-export function getDataRange(): DataRange {
+export function getDataRange(country: CountryCode = 'US'): DataRange {
+  const cpiData = getCPIDataForCountry(country);
+  const investmentData = getInvestmentDataForCountry(country);
+
   // Get CPI range
-  const cpiYears = cpiDataTyped
+  const cpiYears = cpiData
     .filter((item) => item.CPIAUCSL !== '.')
     .map((item) => parseInt(item.observation_date.substring(0, 4)));
 
@@ -115,7 +162,7 @@ export function getDataRange(): DataRange {
   const cpiMaxYear = Math.max(...cpiYears);
 
   // Get Treasury Bill range
-  const tbillYears = treasuryDataTyped
+  const tbillYears = investmentData
     .filter((item) => item.TB3MS !== '.')
     .map((item) => parseInt(item.observation_date.substring(0, 4)));
 
@@ -135,40 +182,43 @@ export function getDataRange(): DataRange {
 /**
  * Check if a year is within the valid range for CPI data
  */
-export function isValidCPIYear(year: number): boolean {
-  const range = getDataRange();
+export function isValidCPIYear(year: number, country: CountryCode = 'US'): boolean {
+  const range = getDataRange(country);
   return year >= range.cpiMinYear && year <= range.cpiMaxYear;
 }
 
 /**
  * Check if a year is within the valid range for Treasury Bill data
  */
-export function isValidTreasuryYear(year: number): boolean {
-  const range = getDataRange();
+export function isValidTreasuryYear(year: number, country: CountryCode = 'US'): boolean {
+  const range = getDataRange(country);
   return year >= range.tbillMinYear && year <= range.tbillMaxYear;
 }
 
 /**
  * Get all CPI data points (for charting)
  */
-export function getAllCPIData(): CPIData[] {
-  return cpiDataTyped.filter((item) => item.CPIAUCSL !== '.');
+export function getAllCPIData(country: CountryCode = 'US'): CPIData[] {
+  const cpiData = getCPIDataForCountry(country);
+  return cpiData.filter((item) => item.CPIAUCSL !== '.');
 }
 
 /**
  * Get all Treasury Bill data points (for charting)
  */
-export function getAllTreasuryData(): TreasuryBillData[] {
-  return treasuryDataTyped.filter((item) => item.TB3MS !== '.');
+export function getAllTreasuryData(country: CountryCode = 'US'): TreasuryBillData[] {
+  const investmentData = getInvestmentDataForCountry(country);
+  return investmentData.filter((item) => item.TB3MS !== '.');
 }
 
 /**
  * Get CPI data grouped by year (yearly average)
  */
-export function getCPIDataByYear(startYear?: number, endYear?: number): Array<{year: number, cpi: number}> {
+export function getCPIDataByYear(startYear?: number, endYear?: number, country: CountryCode = 'US'): Array<{year: number, cpi: number}> {
+  const cpiData = getCPIDataForCountry(country);
   const years = new Set<number>();
 
-  cpiDataTyped
+  cpiData
     .filter((item) => item.CPIAUCSL !== '.')
     .forEach((item) => {
       const year = parseInt(item.observation_date.substring(0, 4));
@@ -184,7 +234,7 @@ export function getCPIDataByYear(startYear?: number, endYear?: number): Array<{y
 
   return filteredYears.map(year => {
     // Get average CPI for the year
-    const yearData = cpiDataTyped.filter((item) =>
+    const yearData = cpiData.filter((item) =>
       item.observation_date.startsWith(`${year}-`) && item.CPIAUCSL !== '.'
     );
 
@@ -200,8 +250,9 @@ export function getCPIDataByYear(startYear?: number, endYear?: number): Array<{y
 /**
  * Get CPI data by month
  */
-export function getCPIDataByMonth(startYear?: number, endYear?: number): Array<{year: number, month: number, date: string, cpi: number}> {
-  return cpiDataTyped
+export function getCPIDataByMonth(startYear?: number, endYear?: number, country: CountryCode = 'US'): Array<{year: number, month: number, date: string, cpi: number}> {
+  const cpiData = getCPIDataForCountry(country);
+  return cpiData
     .filter((item) => {
       if (item.CPIAUCSL === '.') return false;
 
@@ -225,10 +276,11 @@ export function getCPIDataByMonth(startYear?: number, endYear?: number): Array<{
 /**
  * Get Treasury Bill data grouped by year (yearly average)
  */
-export function getTreasuryDataByYear(startYear?: number, endYear?: number): Array<{year: number, rate: number}> {
+export function getTreasuryDataByYear(startYear?: number, endYear?: number, country: CountryCode = 'US'): Array<{year: number, rate: number}> {
+  const investmentData = getInvestmentDataForCountry(country);
   const years = new Set<number>();
 
-  treasuryDataTyped
+  investmentData
     .filter((item) => item.TB3MS !== '.')
     .forEach((item) => {
       const year = parseInt(item.observation_date.substring(0, 4));
@@ -244,7 +296,7 @@ export function getTreasuryDataByYear(startYear?: number, endYear?: number): Arr
 
   return filteredYears.map(year => {
     // Get average rate for the year
-    const yearData = treasuryDataTyped.filter((item) =>
+    const yearData = investmentData.filter((item) =>
       item.observation_date.startsWith(`${year}-`) && item.TB3MS !== '.'
     );
 
@@ -260,8 +312,9 @@ export function getTreasuryDataByYear(startYear?: number, endYear?: number): Arr
 /**
  * Get Treasury Bill data by month
  */
-export function getTreasuryDataByMonth(startYear?: number, endYear?: number): Array<{year: number, month: number, date: string, rate: number}> {
-  return treasuryDataTyped
+export function getTreasuryDataByMonth(startYear?: number, endYear?: number, country: CountryCode = 'US'): Array<{year: number, month: number, date: string, rate: number}> {
+  const investmentData = getInvestmentDataForCountry(country);
+  return investmentData
     .filter((item) => {
       if (item.TB3MS === '.') return false;
 
