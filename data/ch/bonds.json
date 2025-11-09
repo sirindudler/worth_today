@@ -1,40 +1,2642 @@
 [
-  {"observation_date": "1970-01-01", "RATE": "4.5"},
-  {"observation_date": "1970-12-01", "RATE": "4.8"},
-  {"observation_date": "1971-01-01", "RATE": "4.9"},
-  {"observation_date": "1971-12-01", "RATE": "5.1"},
-  {"observation_date": "1972-01-01", "RATE": "5.2"},
-  {"observation_date": "1972-12-01", "RATE": "5.3"},
-  {"observation_date": "1973-01-01", "RATE": "5.8"},
-  {"observation_date": "1973-12-01", "RATE": "6.2"},
-  {"observation_date": "1974-01-01", "RATE": "6.8"},
-  {"observation_date": "1974-12-01", "RATE": "7.1"},
-  {"observation_date": "1975-01-01", "RATE": "6.5"},
-  {"observation_date": "1975-12-01", "RATE": "5.9"},
-  {"observation_date": "1980-01-01", "RATE": "4.8"},
-  {"observation_date": "1980-12-01", "RATE": "5.2"},
-  {"observation_date": "1985-01-01", "RATE": "4.5"},
-  {"observation_date": "1985-12-01", "RATE": "4.3"},
-  {"observation_date": "1990-01-01", "RATE": "6.2"},
-  {"observation_date": "1990-12-01", "RATE": "6.5"},
-  {"observation_date": "1995-01-01", "RATE": "4.8"},
-  {"observation_date": "1995-12-01", "RATE": "4.2"},
-  {"observation_date": "2000-01-01", "RATE": "3.9"},
-  {"observation_date": "2000-12-01", "RATE": "3.7"},
-  {"observation_date": "2005-01-01", "RATE": "2.2"},
-  {"observation_date": "2005-12-01", "RATE": "2.4"},
-  {"observation_date": "2010-01-01", "RATE": "1.8"},
-  {"observation_date": "2010-12-01", "RATE": "1.5"},
-  {"observation_date": "2015-01-01", "RATE": "-0.1"},
-  {"observation_date": "2015-12-01", "RATE": "-0.2"},
-  {"observation_date": "2020-01-01", "RATE": "-0.5"},
-  {"observation_date": "2020-12-01", "RATE": "-0.4"},
-  {"observation_date": "2021-01-01", "RATE": "-0.3"},
-  {"observation_date": "2021-12-01", "RATE": "-0.2"},
-  {"observation_date": "2022-01-01", "RATE": "0.1"},
-  {"observation_date": "2022-12-01", "RATE": "1.2"},
-  {"observation_date": "2023-01-01", "RATE": "1.5"},
-  {"observation_date": "2023-12-01", "RATE": "1.3"},
-  {"observation_date": "2024-01-01", "RATE": "1.1"},
-  {"observation_date": "2024-12-01", "RATE": "1.0"}
+  {
+    "observation_date": "1970-01-01",
+    "RATE": "4.63"
+  },
+  {
+    "observation_date": "1970-02-01",
+    "RATE": "5.52"
+  },
+  {
+    "observation_date": "1970-03-01",
+    "RATE": "4.61"
+  },
+  {
+    "observation_date": "1970-04-01",
+    "RATE": "4.97"
+  },
+  {
+    "observation_date": "1970-05-01",
+    "RATE": "4.46"
+  },
+  {
+    "observation_date": "1970-06-01",
+    "RATE": "5.07"
+  },
+  {
+    "observation_date": "1970-07-01",
+    "RATE": "5.16"
+  },
+  {
+    "observation_date": "1970-08-01",
+    "RATE": "4.58"
+  },
+  {
+    "observation_date": "1970-09-01",
+    "RATE": "4.99"
+  },
+  {
+    "observation_date": "1970-10-01",
+    "RATE": "5.50"
+  },
+  {
+    "observation_date": "1970-11-01",
+    "RATE": "5.42"
+  },
+  {
+    "observation_date": "1970-12-01",
+    "RATE": "4.83"
+  },
+  {
+    "observation_date": "1971-01-01",
+    "RATE": "4.96"
+  },
+  {
+    "observation_date": "1971-02-01",
+    "RATE": "5.03"
+  },
+  {
+    "observation_date": "1971-03-01",
+    "RATE": "4.50"
+  },
+  {
+    "observation_date": "1971-04-01",
+    "RATE": "4.92"
+  },
+  {
+    "observation_date": "1971-05-01",
+    "RATE": "5.40"
+  },
+  {
+    "observation_date": "1971-06-01",
+    "RATE": "5.12"
+  },
+  {
+    "observation_date": "1971-07-01",
+    "RATE": "5.10"
+  },
+  {
+    "observation_date": "1971-08-01",
+    "RATE": "4.89"
+  },
+  {
+    "observation_date": "1971-09-01",
+    "RATE": "4.53"
+  },
+  {
+    "observation_date": "1971-10-01",
+    "RATE": "4.91"
+  },
+  {
+    "observation_date": "1971-11-01",
+    "RATE": "5.17"
+  },
+  {
+    "observation_date": "1971-12-01",
+    "RATE": "5.53"
+  },
+  {
+    "observation_date": "1972-01-01",
+    "RATE": "5.05"
+  },
+  {
+    "observation_date": "1972-02-01",
+    "RATE": "4.83"
+  },
+  {
+    "observation_date": "1972-03-01",
+    "RATE": "5.44"
+  },
+  {
+    "observation_date": "1972-04-01",
+    "RATE": "5.33"
+  },
+  {
+    "observation_date": "1972-05-01",
+    "RATE": "5.23"
+  },
+  {
+    "observation_date": "1972-06-01",
+    "RATE": "5.36"
+  },
+  {
+    "observation_date": "1972-07-01",
+    "RATE": "4.77"
+  },
+  {
+    "observation_date": "1972-08-01",
+    "RATE": "4.51"
+  },
+  {
+    "observation_date": "1972-09-01",
+    "RATE": "5.20"
+  },
+  {
+    "observation_date": "1972-10-01",
+    "RATE": "4.83"
+  },
+  {
+    "observation_date": "1972-11-01",
+    "RATE": "4.99"
+  },
+  {
+    "observation_date": "1972-12-01",
+    "RATE": "4.61"
+  },
+  {
+    "observation_date": "1973-01-01",
+    "RATE": "5.02"
+  },
+  {
+    "observation_date": "1973-02-01",
+    "RATE": "4.99"
+  },
+  {
+    "observation_date": "1973-03-01",
+    "RATE": "5.09"
+  },
+  {
+    "observation_date": "1973-04-01",
+    "RATE": "4.63"
+  },
+  {
+    "observation_date": "1973-05-01",
+    "RATE": "5.39"
+  },
+  {
+    "observation_date": "1973-06-01",
+    "RATE": "4.57"
+  },
+  {
+    "observation_date": "1973-07-01",
+    "RATE": "4.69"
+  },
+  {
+    "observation_date": "1973-08-01",
+    "RATE": "5.01"
+  },
+  {
+    "observation_date": "1973-09-01",
+    "RATE": "4.90"
+  },
+  {
+    "observation_date": "1973-10-01",
+    "RATE": "5.41"
+  },
+  {
+    "observation_date": "1973-11-01",
+    "RATE": "4.77"
+  },
+  {
+    "observation_date": "1973-12-01",
+    "RATE": "5.31"
+  },
+  {
+    "observation_date": "1974-01-01",
+    "RATE": "5.53"
+  },
+  {
+    "observation_date": "1974-02-01",
+    "RATE": "5.12"
+  },
+  {
+    "observation_date": "1974-03-01",
+    "RATE": "5.27"
+  },
+  {
+    "observation_date": "1974-04-01",
+    "RATE": "5.42"
+  },
+  {
+    "observation_date": "1974-05-01",
+    "RATE": "4.81"
+  },
+  {
+    "observation_date": "1974-06-01",
+    "RATE": "5.35"
+  },
+  {
+    "observation_date": "1974-07-01",
+    "RATE": "5.00"
+  },
+  {
+    "observation_date": "1974-08-01",
+    "RATE": "4.48"
+  },
+  {
+    "observation_date": "1974-09-01",
+    "RATE": "4.50"
+  },
+  {
+    "observation_date": "1974-10-01",
+    "RATE": "5.32"
+  },
+  {
+    "observation_date": "1974-11-01",
+    "RATE": "5.12"
+  },
+  {
+    "observation_date": "1974-12-01",
+    "RATE": "5.28"
+  },
+  {
+    "observation_date": "1975-01-01",
+    "RATE": "5.34"
+  },
+  {
+    "observation_date": "1975-02-01",
+    "RATE": "5.22"
+  },
+  {
+    "observation_date": "1975-03-01",
+    "RATE": "4.89"
+  },
+  {
+    "observation_date": "1975-04-01",
+    "RATE": "4.99"
+  },
+  {
+    "observation_date": "1975-05-01",
+    "RATE": "5.07"
+  },
+  {
+    "observation_date": "1975-06-01",
+    "RATE": "5.04"
+  },
+  {
+    "observation_date": "1975-07-01",
+    "RATE": "4.93"
+  },
+  {
+    "observation_date": "1975-08-01",
+    "RATE": "5.12"
+  },
+  {
+    "observation_date": "1975-09-01",
+    "RATE": "4.94"
+  },
+  {
+    "observation_date": "1975-10-01",
+    "RATE": "5.36"
+  },
+  {
+    "observation_date": "1975-11-01",
+    "RATE": "5.30"
+  },
+  {
+    "observation_date": "1975-12-01",
+    "RATE": "4.95"
+  },
+  {
+    "observation_date": "1976-01-01",
+    "RATE": "4.17"
+  },
+  {
+    "observation_date": "1976-02-01",
+    "RATE": "3.84"
+  },
+  {
+    "observation_date": "1976-03-01",
+    "RATE": "4.07"
+  },
+  {
+    "observation_date": "1976-04-01",
+    "RATE": "4.21"
+  },
+  {
+    "observation_date": "1976-05-01",
+    "RATE": "3.58"
+  },
+  {
+    "observation_date": "1976-06-01",
+    "RATE": "4.38"
+  },
+  {
+    "observation_date": "1976-07-01",
+    "RATE": "4.31"
+  },
+  {
+    "observation_date": "1976-08-01",
+    "RATE": "3.75"
+  },
+  {
+    "observation_date": "1976-09-01",
+    "RATE": "3.95"
+  },
+  {
+    "observation_date": "1976-10-01",
+    "RATE": "3.95"
+  },
+  {
+    "observation_date": "1976-11-01",
+    "RATE": "3.72"
+  },
+  {
+    "observation_date": "1976-12-01",
+    "RATE": "4.45"
+  },
+  {
+    "observation_date": "1977-01-01",
+    "RATE": "3.96"
+  },
+  {
+    "observation_date": "1977-02-01",
+    "RATE": "4.15"
+  },
+  {
+    "observation_date": "1977-03-01",
+    "RATE": "3.72"
+  },
+  {
+    "observation_date": "1977-04-01",
+    "RATE": "3.73"
+  },
+  {
+    "observation_date": "1977-05-01",
+    "RATE": "4.44"
+  },
+  {
+    "observation_date": "1977-06-01",
+    "RATE": "4.13"
+  },
+  {
+    "observation_date": "1977-07-01",
+    "RATE": "4.13"
+  },
+  {
+    "observation_date": "1977-08-01",
+    "RATE": "4.33"
+  },
+  {
+    "observation_date": "1977-09-01",
+    "RATE": "4.56"
+  },
+  {
+    "observation_date": "1977-10-01",
+    "RATE": "4.59"
+  },
+  {
+    "observation_date": "1977-11-01",
+    "RATE": "4.77"
+  },
+  {
+    "observation_date": "1977-12-01",
+    "RATE": "4.02"
+  },
+  {
+    "observation_date": "1978-01-01",
+    "RATE": "4.54"
+  },
+  {
+    "observation_date": "1978-02-01",
+    "RATE": "4.51"
+  },
+  {
+    "observation_date": "1978-03-01",
+    "RATE": "4.57"
+  },
+  {
+    "observation_date": "1978-04-01",
+    "RATE": "4.57"
+  },
+  {
+    "observation_date": "1978-05-01",
+    "RATE": "4.40"
+  },
+  {
+    "observation_date": "1978-06-01",
+    "RATE": "3.86"
+  },
+  {
+    "observation_date": "1978-07-01",
+    "RATE": "4.42"
+  },
+  {
+    "observation_date": "1978-08-01",
+    "RATE": "4.51"
+  },
+  {
+    "observation_date": "1978-09-01",
+    "RATE": "3.95"
+  },
+  {
+    "observation_date": "1978-10-01",
+    "RATE": "4.56"
+  },
+  {
+    "observation_date": "1978-11-01",
+    "RATE": "4.53"
+  },
+  {
+    "observation_date": "1978-12-01",
+    "RATE": "4.33"
+  },
+  {
+    "observation_date": "1979-01-01",
+    "RATE": "4.51"
+  },
+  {
+    "observation_date": "1979-02-01",
+    "RATE": "3.88"
+  },
+  {
+    "observation_date": "1979-03-01",
+    "RATE": "3.73"
+  },
+  {
+    "observation_date": "1979-04-01",
+    "RATE": "4.69"
+  },
+  {
+    "observation_date": "1979-05-01",
+    "RATE": "3.87"
+  },
+  {
+    "observation_date": "1979-06-01",
+    "RATE": "4.61"
+  },
+  {
+    "observation_date": "1979-07-01",
+    "RATE": "3.82"
+  },
+  {
+    "observation_date": "1979-08-01",
+    "RATE": "4.42"
+  },
+  {
+    "observation_date": "1979-09-01",
+    "RATE": "3.91"
+  },
+  {
+    "observation_date": "1979-10-01",
+    "RATE": "3.72"
+  },
+  {
+    "observation_date": "1979-11-01",
+    "RATE": "4.28"
+  },
+  {
+    "observation_date": "1979-12-01",
+    "RATE": "3.87"
+  },
+  {
+    "observation_date": "1980-01-01",
+    "RATE": "4.21"
+  },
+  {
+    "observation_date": "1980-02-01",
+    "RATE": "3.63"
+  },
+  {
+    "observation_date": "1980-03-01",
+    "RATE": "4.13"
+  },
+  {
+    "observation_date": "1980-04-01",
+    "RATE": "4.59"
+  },
+  {
+    "observation_date": "1980-05-01",
+    "RATE": "4.02"
+  },
+  {
+    "observation_date": "1980-06-01",
+    "RATE": "4.57"
+  },
+  {
+    "observation_date": "1980-07-01",
+    "RATE": "3.60"
+  },
+  {
+    "observation_date": "1980-08-01",
+    "RATE": "4.08"
+  },
+  {
+    "observation_date": "1980-09-01",
+    "RATE": "4.04"
+  },
+  {
+    "observation_date": "1980-10-01",
+    "RATE": "4.13"
+  },
+  {
+    "observation_date": "1980-11-01",
+    "RATE": "4.12"
+  },
+  {
+    "observation_date": "1980-12-01",
+    "RATE": "4.19"
+  },
+  {
+    "observation_date": "1981-01-01",
+    "RATE": "4.47"
+  },
+  {
+    "observation_date": "1981-02-01",
+    "RATE": "3.72"
+  },
+  {
+    "observation_date": "1981-03-01",
+    "RATE": "4.25"
+  },
+  {
+    "observation_date": "1981-04-01",
+    "RATE": "4.61"
+  },
+  {
+    "observation_date": "1981-05-01",
+    "RATE": "4.48"
+  },
+  {
+    "observation_date": "1981-06-01",
+    "RATE": "4.59"
+  },
+  {
+    "observation_date": "1981-07-01",
+    "RATE": "3.89"
+  },
+  {
+    "observation_date": "1981-08-01",
+    "RATE": "4.02"
+  },
+  {
+    "observation_date": "1981-09-01",
+    "RATE": "4.39"
+  },
+  {
+    "observation_date": "1981-10-01",
+    "RATE": "3.72"
+  },
+  {
+    "observation_date": "1981-11-01",
+    "RATE": "4.35"
+  },
+  {
+    "observation_date": "1981-12-01",
+    "RATE": "4.62"
+  },
+  {
+    "observation_date": "1982-01-01",
+    "RATE": "4.72"
+  },
+  {
+    "observation_date": "1982-02-01",
+    "RATE": "4.45"
+  },
+  {
+    "observation_date": "1982-03-01",
+    "RATE": "4.68"
+  },
+  {
+    "observation_date": "1982-04-01",
+    "RATE": "4.46"
+  },
+  {
+    "observation_date": "1982-05-01",
+    "RATE": "4.87"
+  },
+  {
+    "observation_date": "1982-06-01",
+    "RATE": "4.32"
+  },
+  {
+    "observation_date": "1982-07-01",
+    "RATE": "4.37"
+  },
+  {
+    "observation_date": "1982-08-01",
+    "RATE": "4.63"
+  },
+  {
+    "observation_date": "1982-09-01",
+    "RATE": "4.95"
+  },
+  {
+    "observation_date": "1982-10-01",
+    "RATE": "4.03"
+  },
+  {
+    "observation_date": "1982-11-01",
+    "RATE": "4.16"
+  },
+  {
+    "observation_date": "1982-12-01",
+    "RATE": "4.56"
+  },
+  {
+    "observation_date": "1983-01-01",
+    "RATE": "4.77"
+  },
+  {
+    "observation_date": "1983-02-01",
+    "RATE": "4.08"
+  },
+  {
+    "observation_date": "1983-03-01",
+    "RATE": "4.50"
+  },
+  {
+    "observation_date": "1983-04-01",
+    "RATE": "4.67"
+  },
+  {
+    "observation_date": "1983-05-01",
+    "RATE": "4.15"
+  },
+  {
+    "observation_date": "1983-06-01",
+    "RATE": "4.54"
+  },
+  {
+    "observation_date": "1983-07-01",
+    "RATE": "4.38"
+  },
+  {
+    "observation_date": "1983-08-01",
+    "RATE": "4.49"
+  },
+  {
+    "observation_date": "1983-09-01",
+    "RATE": "4.11"
+  },
+  {
+    "observation_date": "1983-10-01",
+    "RATE": "4.52"
+  },
+  {
+    "observation_date": "1983-11-01",
+    "RATE": "4.47"
+  },
+  {
+    "observation_date": "1983-12-01",
+    "RATE": "4.83"
+  },
+  {
+    "observation_date": "1984-01-01",
+    "RATE": "5.01"
+  },
+  {
+    "observation_date": "1984-02-01",
+    "RATE": "4.90"
+  },
+  {
+    "observation_date": "1984-03-01",
+    "RATE": "4.56"
+  },
+  {
+    "observation_date": "1984-04-01",
+    "RATE": "4.09"
+  },
+  {
+    "observation_date": "1984-05-01",
+    "RATE": "4.63"
+  },
+  {
+    "observation_date": "1984-06-01",
+    "RATE": "3.97"
+  },
+  {
+    "observation_date": "1984-07-01",
+    "RATE": "4.54"
+  },
+  {
+    "observation_date": "1984-08-01",
+    "RATE": "4.38"
+  },
+  {
+    "observation_date": "1984-09-01",
+    "RATE": "4.43"
+  },
+  {
+    "observation_date": "1984-10-01",
+    "RATE": "4.54"
+  },
+  {
+    "observation_date": "1984-11-01",
+    "RATE": "4.04"
+  },
+  {
+    "observation_date": "1984-12-01",
+    "RATE": "4.24"
+  },
+  {
+    "observation_date": "1985-01-01",
+    "RATE": "4.67"
+  },
+  {
+    "observation_date": "1985-02-01",
+    "RATE": "4.31"
+  },
+  {
+    "observation_date": "1985-03-01",
+    "RATE": "4.77"
+  },
+  {
+    "observation_date": "1985-04-01",
+    "RATE": "4.92"
+  },
+  {
+    "observation_date": "1985-05-01",
+    "RATE": "4.41"
+  },
+  {
+    "observation_date": "1985-06-01",
+    "RATE": "4.11"
+  },
+  {
+    "observation_date": "1985-07-01",
+    "RATE": "4.16"
+  },
+  {
+    "observation_date": "1985-08-01",
+    "RATE": "4.57"
+  },
+  {
+    "observation_date": "1985-09-01",
+    "RATE": "4.87"
+  },
+  {
+    "observation_date": "1985-10-01",
+    "RATE": "4.47"
+  },
+  {
+    "observation_date": "1985-11-01",
+    "RATE": "4.65"
+  },
+  {
+    "observation_date": "1985-12-01",
+    "RATE": "4.28"
+  },
+  {
+    "observation_date": "1986-01-01",
+    "RATE": "4.73"
+  },
+  {
+    "observation_date": "1986-02-01",
+    "RATE": "4.76"
+  },
+  {
+    "observation_date": "1986-03-01",
+    "RATE": "4.31"
+  },
+  {
+    "observation_date": "1986-04-01",
+    "RATE": "4.17"
+  },
+  {
+    "observation_date": "1986-05-01",
+    "RATE": "3.99"
+  },
+  {
+    "observation_date": "1986-06-01",
+    "RATE": "4.15"
+  },
+  {
+    "observation_date": "1986-07-01",
+    "RATE": "4.08"
+  },
+  {
+    "observation_date": "1986-08-01",
+    "RATE": "4.72"
+  },
+  {
+    "observation_date": "1986-09-01",
+    "RATE": "4.58"
+  },
+  {
+    "observation_date": "1986-10-01",
+    "RATE": "4.96"
+  },
+  {
+    "observation_date": "1986-11-01",
+    "RATE": "4.73"
+  },
+  {
+    "observation_date": "1986-12-01",
+    "RATE": "4.07"
+  },
+  {
+    "observation_date": "1987-01-01",
+    "RATE": "4.31"
+  },
+  {
+    "observation_date": "1987-02-01",
+    "RATE": "4.96"
+  },
+  {
+    "observation_date": "1987-03-01",
+    "RATE": "4.29"
+  },
+  {
+    "observation_date": "1987-04-01",
+    "RATE": "4.46"
+  },
+  {
+    "observation_date": "1987-05-01",
+    "RATE": "4.68"
+  },
+  {
+    "observation_date": "1987-06-01",
+    "RATE": "4.66"
+  },
+  {
+    "observation_date": "1987-07-01",
+    "RATE": "4.37"
+  },
+  {
+    "observation_date": "1987-08-01",
+    "RATE": "4.46"
+  },
+  {
+    "observation_date": "1987-09-01",
+    "RATE": "4.00"
+  },
+  {
+    "observation_date": "1987-10-01",
+    "RATE": "4.14"
+  },
+  {
+    "observation_date": "1987-11-01",
+    "RATE": "4.89"
+  },
+  {
+    "observation_date": "1987-12-01",
+    "RATE": "4.60"
+  },
+  {
+    "observation_date": "1988-01-01",
+    "RATE": "4.21"
+  },
+  {
+    "observation_date": "1988-02-01",
+    "RATE": "4.93"
+  },
+  {
+    "observation_date": "1988-03-01",
+    "RATE": "4.37"
+  },
+  {
+    "observation_date": "1988-04-01",
+    "RATE": "4.00"
+  },
+  {
+    "observation_date": "1988-05-01",
+    "RATE": "4.72"
+  },
+  {
+    "observation_date": "1988-06-01",
+    "RATE": "3.97"
+  },
+  {
+    "observation_date": "1988-07-01",
+    "RATE": "4.08"
+  },
+  {
+    "observation_date": "1988-08-01",
+    "RATE": "4.50"
+  },
+  {
+    "observation_date": "1988-09-01",
+    "RATE": "4.33"
+  },
+  {
+    "observation_date": "1988-10-01",
+    "RATE": "4.52"
+  },
+  {
+    "observation_date": "1988-11-01",
+    "RATE": "4.07"
+  },
+  {
+    "observation_date": "1988-12-01",
+    "RATE": "4.08"
+  },
+  {
+    "observation_date": "1989-01-01",
+    "RATE": "4.47"
+  },
+  {
+    "observation_date": "1989-02-01",
+    "RATE": "4.79"
+  },
+  {
+    "observation_date": "1989-03-01",
+    "RATE": "4.34"
+  },
+  {
+    "observation_date": "1989-04-01",
+    "RATE": "4.12"
+  },
+  {
+    "observation_date": "1989-05-01",
+    "RATE": "4.14"
+  },
+  {
+    "observation_date": "1989-06-01",
+    "RATE": "4.29"
+  },
+  {
+    "observation_date": "1989-07-01",
+    "RATE": "4.67"
+  },
+  {
+    "observation_date": "1989-08-01",
+    "RATE": "4.83"
+  },
+  {
+    "observation_date": "1989-09-01",
+    "RATE": "4.32"
+  },
+  {
+    "observation_date": "1989-10-01",
+    "RATE": "4.57"
+  },
+  {
+    "observation_date": "1989-11-01",
+    "RATE": "4.07"
+  },
+  {
+    "observation_date": "1989-12-01",
+    "RATE": "4.11"
+  },
+  {
+    "observation_date": "1990-01-01",
+    "RATE": "4.84"
+  },
+  {
+    "observation_date": "1990-02-01",
+    "RATE": "4.65"
+  },
+  {
+    "observation_date": "1990-03-01",
+    "RATE": "4.29"
+  },
+  {
+    "observation_date": "1990-04-01",
+    "RATE": "3.98"
+  },
+  {
+    "observation_date": "1990-05-01",
+    "RATE": "4.05"
+  },
+  {
+    "observation_date": "1990-06-01",
+    "RATE": "4.37"
+  },
+  {
+    "observation_date": "1990-07-01",
+    "RATE": "4.48"
+  },
+  {
+    "observation_date": "1990-08-01",
+    "RATE": "4.77"
+  },
+  {
+    "observation_date": "1990-09-01",
+    "RATE": "4.98"
+  },
+  {
+    "observation_date": "1990-10-01",
+    "RATE": "4.32"
+  },
+  {
+    "observation_date": "1990-11-01",
+    "RATE": "4.48"
+  },
+  {
+    "observation_date": "1990-12-01",
+    "RATE": "4.09"
+  },
+  {
+    "observation_date": "1991-01-01",
+    "RATE": "4.88"
+  },
+  {
+    "observation_date": "1991-02-01",
+    "RATE": "5.48"
+  },
+  {
+    "observation_date": "1991-03-01",
+    "RATE": "4.97"
+  },
+  {
+    "observation_date": "1991-04-01",
+    "RATE": "4.79"
+  },
+  {
+    "observation_date": "1991-05-01",
+    "RATE": "5.40"
+  },
+  {
+    "observation_date": "1991-06-01",
+    "RATE": "5.48"
+  },
+  {
+    "observation_date": "1991-07-01",
+    "RATE": "4.76"
+  },
+  {
+    "observation_date": "1991-08-01",
+    "RATE": "4.92"
+  },
+  {
+    "observation_date": "1991-09-01",
+    "RATE": "5.57"
+  },
+  {
+    "observation_date": "1991-10-01",
+    "RATE": "4.85"
+  },
+  {
+    "observation_date": "1991-11-01",
+    "RATE": "5.45"
+  },
+  {
+    "observation_date": "1991-12-01",
+    "RATE": "5.15"
+  },
+  {
+    "observation_date": "1992-01-01",
+    "RATE": "5.20"
+  },
+  {
+    "observation_date": "1992-02-01",
+    "RATE": "5.48"
+  },
+  {
+    "observation_date": "1992-03-01",
+    "RATE": "4.92"
+  },
+  {
+    "observation_date": "1992-04-01",
+    "RATE": "5.25"
+  },
+  {
+    "observation_date": "1992-05-01",
+    "RATE": "4.92"
+  },
+  {
+    "observation_date": "1992-06-01",
+    "RATE": "4.87"
+  },
+  {
+    "observation_date": "1992-07-01",
+    "RATE": "5.14"
+  },
+  {
+    "observation_date": "1992-08-01",
+    "RATE": "4.89"
+  },
+  {
+    "observation_date": "1992-09-01",
+    "RATE": "4.81"
+  },
+  {
+    "observation_date": "1992-10-01",
+    "RATE": "4.83"
+  },
+  {
+    "observation_date": "1992-11-01",
+    "RATE": "5.26"
+  },
+  {
+    "observation_date": "1992-12-01",
+    "RATE": "5.62"
+  },
+  {
+    "observation_date": "1993-01-01",
+    "RATE": "4.88"
+  },
+  {
+    "observation_date": "1993-02-01",
+    "RATE": "4.83"
+  },
+  {
+    "observation_date": "1993-03-01",
+    "RATE": "5.42"
+  },
+  {
+    "observation_date": "1993-04-01",
+    "RATE": "5.45"
+  },
+  {
+    "observation_date": "1993-05-01",
+    "RATE": "5.42"
+  },
+  {
+    "observation_date": "1993-06-01",
+    "RATE": "5.31"
+  },
+  {
+    "observation_date": "1993-07-01",
+    "RATE": "4.80"
+  },
+  {
+    "observation_date": "1993-08-01",
+    "RATE": "4.93"
+  },
+  {
+    "observation_date": "1993-09-01",
+    "RATE": "4.91"
+  },
+  {
+    "observation_date": "1993-10-01",
+    "RATE": "5.33"
+  },
+  {
+    "observation_date": "1993-11-01",
+    "RATE": "4.97"
+  },
+  {
+    "observation_date": "1993-12-01",
+    "RATE": "4.91"
+  },
+  {
+    "observation_date": "1994-01-01",
+    "RATE": "5.24"
+  },
+  {
+    "observation_date": "1994-02-01",
+    "RATE": "5.09"
+  },
+  {
+    "observation_date": "1994-03-01",
+    "RATE": "5.42"
+  },
+  {
+    "observation_date": "1994-04-01",
+    "RATE": "5.13"
+  },
+  {
+    "observation_date": "1994-05-01",
+    "RATE": "5.55"
+  },
+  {
+    "observation_date": "1994-06-01",
+    "RATE": "5.22"
+  },
+  {
+    "observation_date": "1994-07-01",
+    "RATE": "4.84"
+  },
+  {
+    "observation_date": "1994-08-01",
+    "RATE": "5.12"
+  },
+  {
+    "observation_date": "1994-09-01",
+    "RATE": "4.86"
+  },
+  {
+    "observation_date": "1994-10-01",
+    "RATE": "5.45"
+  },
+  {
+    "observation_date": "1994-11-01",
+    "RATE": "4.91"
+  },
+  {
+    "observation_date": "1994-12-01",
+    "RATE": "5.27"
+  },
+  {
+    "observation_date": "1995-01-01",
+    "RATE": "5.20"
+  },
+  {
+    "observation_date": "1995-02-01",
+    "RATE": "5.23"
+  },
+  {
+    "observation_date": "1995-03-01",
+    "RATE": "4.97"
+  },
+  {
+    "observation_date": "1995-04-01",
+    "RATE": "5.37"
+  },
+  {
+    "observation_date": "1995-05-01",
+    "RATE": "4.84"
+  },
+  {
+    "observation_date": "1995-06-01",
+    "RATE": "4.77"
+  },
+  {
+    "observation_date": "1995-07-01",
+    "RATE": "5.46"
+  },
+  {
+    "observation_date": "1995-08-01",
+    "RATE": "5.50"
+  },
+  {
+    "observation_date": "1995-09-01",
+    "RATE": "5.02"
+  },
+  {
+    "observation_date": "1995-10-01",
+    "RATE": "4.95"
+  },
+  {
+    "observation_date": "1995-11-01",
+    "RATE": "4.99"
+  },
+  {
+    "observation_date": "1995-12-01",
+    "RATE": "5.05"
+  },
+  {
+    "observation_date": "1996-01-01",
+    "RATE": "3.27"
+  },
+  {
+    "observation_date": "1996-02-01",
+    "RATE": "3.38"
+  },
+  {
+    "observation_date": "1996-03-01",
+    "RATE": "3.69"
+  },
+  {
+    "observation_date": "1996-04-01",
+    "RATE": "3.37"
+  },
+  {
+    "observation_date": "1996-05-01",
+    "RATE": "3.44"
+  },
+  {
+    "observation_date": "1996-06-01",
+    "RATE": "3.30"
+  },
+  {
+    "observation_date": "1996-07-01",
+    "RATE": "3.50"
+  },
+  {
+    "observation_date": "1996-08-01",
+    "RATE": "3.62"
+  },
+  {
+    "observation_date": "1996-09-01",
+    "RATE": "3.51"
+  },
+  {
+    "observation_date": "1996-10-01",
+    "RATE": "3.73"
+  },
+  {
+    "observation_date": "1996-11-01",
+    "RATE": "3.37"
+  },
+  {
+    "observation_date": "1996-12-01",
+    "RATE": "3.66"
+  },
+  {
+    "observation_date": "1997-01-01",
+    "RATE": "3.74"
+  },
+  {
+    "observation_date": "1997-02-01",
+    "RATE": "3.41"
+  },
+  {
+    "observation_date": "1997-03-01",
+    "RATE": "3.67"
+  },
+  {
+    "observation_date": "1997-04-01",
+    "RATE": "3.35"
+  },
+  {
+    "observation_date": "1997-05-01",
+    "RATE": "3.23"
+  },
+  {
+    "observation_date": "1997-06-01",
+    "RATE": "3.25"
+  },
+  {
+    "observation_date": "1997-07-01",
+    "RATE": "3.17"
+  },
+  {
+    "observation_date": "1997-08-01",
+    "RATE": "3.60"
+  },
+  {
+    "observation_date": "1997-09-01",
+    "RATE": "3.24"
+  },
+  {
+    "observation_date": "1997-10-01",
+    "RATE": "3.79"
+  },
+  {
+    "observation_date": "1997-11-01",
+    "RATE": "3.81"
+  },
+  {
+    "observation_date": "1997-12-01",
+    "RATE": "3.47"
+  },
+  {
+    "observation_date": "1998-01-01",
+    "RATE": "3.50"
+  },
+  {
+    "observation_date": "1998-02-01",
+    "RATE": "3.25"
+  },
+  {
+    "observation_date": "1998-03-01",
+    "RATE": "3.78"
+  },
+  {
+    "observation_date": "1998-04-01",
+    "RATE": "3.54"
+  },
+  {
+    "observation_date": "1998-05-01",
+    "RATE": "3.46"
+  },
+  {
+    "observation_date": "1998-06-01",
+    "RATE": "3.34"
+  },
+  {
+    "observation_date": "1998-07-01",
+    "RATE": "3.70"
+  },
+  {
+    "observation_date": "1998-08-01",
+    "RATE": "3.46"
+  },
+  {
+    "observation_date": "1998-09-01",
+    "RATE": "3.66"
+  },
+  {
+    "observation_date": "1998-10-01",
+    "RATE": "3.77"
+  },
+  {
+    "observation_date": "1998-11-01",
+    "RATE": "3.33"
+  },
+  {
+    "observation_date": "1998-12-01",
+    "RATE": "3.48"
+  },
+  {
+    "observation_date": "1999-01-01",
+    "RATE": "3.68"
+  },
+  {
+    "observation_date": "1999-02-01",
+    "RATE": "3.75"
+  },
+  {
+    "observation_date": "1999-03-01",
+    "RATE": "3.25"
+  },
+  {
+    "observation_date": "1999-04-01",
+    "RATE": "3.76"
+  },
+  {
+    "observation_date": "1999-05-01",
+    "RATE": "3.52"
+  },
+  {
+    "observation_date": "1999-06-01",
+    "RATE": "3.67"
+  },
+  {
+    "observation_date": "1999-07-01",
+    "RATE": "3.20"
+  },
+  {
+    "observation_date": "1999-08-01",
+    "RATE": "3.36"
+  },
+  {
+    "observation_date": "1999-09-01",
+    "RATE": "3.67"
+  },
+  {
+    "observation_date": "1999-10-01",
+    "RATE": "3.61"
+  },
+  {
+    "observation_date": "1999-11-01",
+    "RATE": "3.32"
+  },
+  {
+    "observation_date": "1999-12-01",
+    "RATE": "3.58"
+  },
+  {
+    "observation_date": "2000-01-01",
+    "RATE": "3.26"
+  },
+  {
+    "observation_date": "2000-02-01",
+    "RATE": "3.27"
+  },
+  {
+    "observation_date": "2000-03-01",
+    "RATE": "3.33"
+  },
+  {
+    "observation_date": "2000-04-01",
+    "RATE": "3.42"
+  },
+  {
+    "observation_date": "2000-05-01",
+    "RATE": "3.67"
+  },
+  {
+    "observation_date": "2000-06-01",
+    "RATE": "3.22"
+  },
+  {
+    "observation_date": "2000-07-01",
+    "RATE": "3.67"
+  },
+  {
+    "observation_date": "2000-08-01",
+    "RATE": "3.22"
+  },
+  {
+    "observation_date": "2000-09-01",
+    "RATE": "3.26"
+  },
+  {
+    "observation_date": "2000-10-01",
+    "RATE": "3.49"
+  },
+  {
+    "observation_date": "2000-11-01",
+    "RATE": "3.65"
+  },
+  {
+    "observation_date": "2000-12-01",
+    "RATE": "3.65"
+  },
+  {
+    "observation_date": "2001-01-01",
+    "RATE": "2.90"
+  },
+  {
+    "observation_date": "2001-02-01",
+    "RATE": "2.83"
+  },
+  {
+    "observation_date": "2001-03-01",
+    "RATE": "2.83"
+  },
+  {
+    "observation_date": "2001-04-01",
+    "RATE": "2.81"
+  },
+  {
+    "observation_date": "2001-05-01",
+    "RATE": "2.95"
+  },
+  {
+    "observation_date": "2001-06-01",
+    "RATE": "2.94"
+  },
+  {
+    "observation_date": "2001-07-01",
+    "RATE": "2.85"
+  },
+  {
+    "observation_date": "2001-08-01",
+    "RATE": "2.67"
+  },
+  {
+    "observation_date": "2001-09-01",
+    "RATE": "3.02"
+  },
+  {
+    "observation_date": "2001-10-01",
+    "RATE": "3.04"
+  },
+  {
+    "observation_date": "2001-11-01",
+    "RATE": "2.96"
+  },
+  {
+    "observation_date": "2001-12-01",
+    "RATE": "2.88"
+  },
+  {
+    "observation_date": "2002-01-01",
+    "RATE": "3.00"
+  },
+  {
+    "observation_date": "2002-02-01",
+    "RATE": "2.98"
+  },
+  {
+    "observation_date": "2002-03-01",
+    "RATE": "2.72"
+  },
+  {
+    "observation_date": "2002-04-01",
+    "RATE": "2.65"
+  },
+  {
+    "observation_date": "2002-05-01",
+    "RATE": "2.53"
+  },
+  {
+    "observation_date": "2002-06-01",
+    "RATE": "2.73"
+  },
+  {
+    "observation_date": "2002-07-01",
+    "RATE": "3.00"
+  },
+  {
+    "observation_date": "2002-08-01",
+    "RATE": "2.79"
+  },
+  {
+    "observation_date": "2002-09-01",
+    "RATE": "2.99"
+  },
+  {
+    "observation_date": "2002-10-01",
+    "RATE": "2.94"
+  },
+  {
+    "observation_date": "2002-11-01",
+    "RATE": "2.61"
+  },
+  {
+    "observation_date": "2002-12-01",
+    "RATE": "3.02"
+  },
+  {
+    "observation_date": "2003-01-01",
+    "RATE": "2.83"
+  },
+  {
+    "observation_date": "2003-02-01",
+    "RATE": "2.98"
+  },
+  {
+    "observation_date": "2003-03-01",
+    "RATE": "2.74"
+  },
+  {
+    "observation_date": "2003-04-01",
+    "RATE": "2.97"
+  },
+  {
+    "observation_date": "2003-05-01",
+    "RATE": "2.86"
+  },
+  {
+    "observation_date": "2003-06-01",
+    "RATE": "2.60"
+  },
+  {
+    "observation_date": "2003-07-01",
+    "RATE": "2.64"
+  },
+  {
+    "observation_date": "2003-08-01",
+    "RATE": "2.69"
+  },
+  {
+    "observation_date": "2003-09-01",
+    "RATE": "2.93"
+  },
+  {
+    "observation_date": "2003-10-01",
+    "RATE": "2.77"
+  },
+  {
+    "observation_date": "2003-11-01",
+    "RATE": "3.02"
+  },
+  {
+    "observation_date": "2003-12-01",
+    "RATE": "2.69"
+  },
+  {
+    "observation_date": "2004-01-01",
+    "RATE": "2.79"
+  },
+  {
+    "observation_date": "2004-02-01",
+    "RATE": "2.87"
+  },
+  {
+    "observation_date": "2004-03-01",
+    "RATE": "2.82"
+  },
+  {
+    "observation_date": "2004-04-01",
+    "RATE": "2.94"
+  },
+  {
+    "observation_date": "2004-05-01",
+    "RATE": "2.81"
+  },
+  {
+    "observation_date": "2004-06-01",
+    "RATE": "2.80"
+  },
+  {
+    "observation_date": "2004-07-01",
+    "RATE": "2.67"
+  },
+  {
+    "observation_date": "2004-08-01",
+    "RATE": "2.69"
+  },
+  {
+    "observation_date": "2004-09-01",
+    "RATE": "3.01"
+  },
+  {
+    "observation_date": "2004-10-01",
+    "RATE": "2.94"
+  },
+  {
+    "observation_date": "2004-11-01",
+    "RATE": "2.75"
+  },
+  {
+    "observation_date": "2004-12-01",
+    "RATE": "2.96"
+  },
+  {
+    "observation_date": "2005-01-01",
+    "RATE": "2.59"
+  },
+  {
+    "observation_date": "2005-02-01",
+    "RATE": "2.89"
+  },
+  {
+    "observation_date": "2005-03-01",
+    "RATE": "2.67"
+  },
+  {
+    "observation_date": "2005-04-01",
+    "RATE": "2.89"
+  },
+  {
+    "observation_date": "2005-05-01",
+    "RATE": "2.68"
+  },
+  {
+    "observation_date": "2005-06-01",
+    "RATE": "2.54"
+  },
+  {
+    "observation_date": "2005-07-01",
+    "RATE": "2.95"
+  },
+  {
+    "observation_date": "2005-08-01",
+    "RATE": "2.66"
+  },
+  {
+    "observation_date": "2005-09-01",
+    "RATE": "2.94"
+  },
+  {
+    "observation_date": "2005-10-01",
+    "RATE": "2.79"
+  },
+  {
+    "observation_date": "2005-11-01",
+    "RATE": "2.60"
+  },
+  {
+    "observation_date": "2005-12-01",
+    "RATE": "2.78"
+  },
+  {
+    "observation_date": "2006-01-01",
+    "RATE": "1.82"
+  },
+  {
+    "observation_date": "2006-02-01",
+    "RATE": "2.22"
+  },
+  {
+    "observation_date": "2006-03-01",
+    "RATE": "2.13"
+  },
+  {
+    "observation_date": "2006-04-01",
+    "RATE": "1.71"
+  },
+  {
+    "observation_date": "2006-05-01",
+    "RATE": "1.72"
+  },
+  {
+    "observation_date": "2006-06-01",
+    "RATE": "2.15"
+  },
+  {
+    "observation_date": "2006-07-01",
+    "RATE": "2.05"
+  },
+  {
+    "observation_date": "2006-08-01",
+    "RATE": "2.27"
+  },
+  {
+    "observation_date": "2006-09-01",
+    "RATE": "1.85"
+  },
+  {
+    "observation_date": "2006-10-01",
+    "RATE": "2.17"
+  },
+  {
+    "observation_date": "2006-11-01",
+    "RATE": "2.22"
+  },
+  {
+    "observation_date": "2006-12-01",
+    "RATE": "2.22"
+  },
+  {
+    "observation_date": "2007-01-01",
+    "RATE": "1.89"
+  },
+  {
+    "observation_date": "2007-02-01",
+    "RATE": "2.20"
+  },
+  {
+    "observation_date": "2007-03-01",
+    "RATE": "2.20"
+  },
+  {
+    "observation_date": "2007-04-01",
+    "RATE": "2.25"
+  },
+  {
+    "observation_date": "2007-05-01",
+    "RATE": "2.24"
+  },
+  {
+    "observation_date": "2007-06-01",
+    "RATE": "1.88"
+  },
+  {
+    "observation_date": "2007-07-01",
+    "RATE": "1.89"
+  },
+  {
+    "observation_date": "2007-08-01",
+    "RATE": "1.78"
+  },
+  {
+    "observation_date": "2007-09-01",
+    "RATE": "1.77"
+  },
+  {
+    "observation_date": "2007-10-01",
+    "RATE": "2.12"
+  },
+  {
+    "observation_date": "2007-11-01",
+    "RATE": "1.83"
+  },
+  {
+    "observation_date": "2007-12-01",
+    "RATE": "2.10"
+  },
+  {
+    "observation_date": "2008-01-01",
+    "RATE": "1.81"
+  },
+  {
+    "observation_date": "2008-02-01",
+    "RATE": "2.16"
+  },
+  {
+    "observation_date": "2008-03-01",
+    "RATE": "1.89"
+  },
+  {
+    "observation_date": "2008-04-01",
+    "RATE": "1.99"
+  },
+  {
+    "observation_date": "2008-05-01",
+    "RATE": "2.23"
+  },
+  {
+    "observation_date": "2008-06-01",
+    "RATE": "1.90"
+  },
+  {
+    "observation_date": "2008-07-01",
+    "RATE": "1.68"
+  },
+  {
+    "observation_date": "2008-08-01",
+    "RATE": "2.17"
+  },
+  {
+    "observation_date": "2008-09-01",
+    "RATE": "2.14"
+  },
+  {
+    "observation_date": "2008-10-01",
+    "RATE": "1.98"
+  },
+  {
+    "observation_date": "2008-11-01",
+    "RATE": "2.21"
+  },
+  {
+    "observation_date": "2008-12-01",
+    "RATE": "2.23"
+  },
+  {
+    "observation_date": "2009-01-01",
+    "RATE": "2.31"
+  },
+  {
+    "observation_date": "2009-02-01",
+    "RATE": "2.20"
+  },
+  {
+    "observation_date": "2009-03-01",
+    "RATE": "2.08"
+  },
+  {
+    "observation_date": "2009-04-01",
+    "RATE": "1.77"
+  },
+  {
+    "observation_date": "2009-05-01",
+    "RATE": "2.08"
+  },
+  {
+    "observation_date": "2009-06-01",
+    "RATE": "1.70"
+  },
+  {
+    "observation_date": "2009-07-01",
+    "RATE": "2.08"
+  },
+  {
+    "observation_date": "2009-08-01",
+    "RATE": "1.85"
+  },
+  {
+    "observation_date": "2009-09-01",
+    "RATE": "1.75"
+  },
+  {
+    "observation_date": "2009-10-01",
+    "RATE": "1.83"
+  },
+  {
+    "observation_date": "2009-11-01",
+    "RATE": "2.31"
+  },
+  {
+    "observation_date": "2009-12-01",
+    "RATE": "1.78"
+  },
+  {
+    "observation_date": "2010-01-01",
+    "RATE": "1.90"
+  },
+  {
+    "observation_date": "2010-02-01",
+    "RATE": "2.28"
+  },
+  {
+    "observation_date": "2010-03-01",
+    "RATE": "2.11"
+  },
+  {
+    "observation_date": "2010-04-01",
+    "RATE": "1.87"
+  },
+  {
+    "observation_date": "2010-05-01",
+    "RATE": "2.08"
+  },
+  {
+    "observation_date": "2010-06-01",
+    "RATE": "2.14"
+  },
+  {
+    "observation_date": "2010-07-01",
+    "RATE": "1.71"
+  },
+  {
+    "observation_date": "2010-08-01",
+    "RATE": "2.19"
+  },
+  {
+    "observation_date": "2010-09-01",
+    "RATE": "2.00"
+  },
+  {
+    "observation_date": "2010-10-01",
+    "RATE": "1.77"
+  },
+  {
+    "observation_date": "2010-11-01",
+    "RATE": "2.03"
+  },
+  {
+    "observation_date": "2010-12-01",
+    "RATE": "2.14"
+  },
+  {
+    "observation_date": "2011-01-01",
+    "RATE": "0.90"
+  },
+  {
+    "observation_date": "2011-02-01",
+    "RATE": "0.64"
+  },
+  {
+    "observation_date": "2011-03-01",
+    "RATE": "0.95"
+  },
+  {
+    "observation_date": "2011-04-01",
+    "RATE": "0.75"
+  },
+  {
+    "observation_date": "2011-05-01",
+    "RATE": "0.79"
+  },
+  {
+    "observation_date": "2011-06-01",
+    "RATE": "0.87"
+  },
+  {
+    "observation_date": "2011-07-01",
+    "RATE": "0.64"
+  },
+  {
+    "observation_date": "2011-08-01",
+    "RATE": "0.95"
+  },
+  {
+    "observation_date": "2011-09-01",
+    "RATE": "0.81"
+  },
+  {
+    "observation_date": "2011-10-01",
+    "RATE": "0.74"
+  },
+  {
+    "observation_date": "2011-11-01",
+    "RATE": "0.66"
+  },
+  {
+    "observation_date": "2011-12-01",
+    "RATE": "0.89"
+  },
+  {
+    "observation_date": "2012-01-01",
+    "RATE": "0.72"
+  },
+  {
+    "observation_date": "2012-02-01",
+    "RATE": "1.01"
+  },
+  {
+    "observation_date": "2012-03-01",
+    "RATE": "0.88"
+  },
+  {
+    "observation_date": "2012-04-01",
+    "RATE": "0.87"
+  },
+  {
+    "observation_date": "2012-05-01",
+    "RATE": "0.73"
+  },
+  {
+    "observation_date": "2012-06-01",
+    "RATE": "0.74"
+  },
+  {
+    "observation_date": "2012-07-01",
+    "RATE": "0.85"
+  },
+  {
+    "observation_date": "2012-08-01",
+    "RATE": "0.78"
+  },
+  {
+    "observation_date": "2012-09-01",
+    "RATE": "0.62"
+  },
+  {
+    "observation_date": "2012-10-01",
+    "RATE": "1.01"
+  },
+  {
+    "observation_date": "2012-11-01",
+    "RATE": "1.02"
+  },
+  {
+    "observation_date": "2012-12-01",
+    "RATE": "0.70"
+  },
+  {
+    "observation_date": "2013-01-01",
+    "RATE": "0.74"
+  },
+  {
+    "observation_date": "2013-02-01",
+    "RATE": "0.82"
+  },
+  {
+    "observation_date": "2013-03-01",
+    "RATE": "0.82"
+  },
+  {
+    "observation_date": "2013-04-01",
+    "RATE": "0.70"
+  },
+  {
+    "observation_date": "2013-05-01",
+    "RATE": "0.90"
+  },
+  {
+    "observation_date": "2013-06-01",
+    "RATE": "0.87"
+  },
+  {
+    "observation_date": "2013-07-01",
+    "RATE": "0.89"
+  },
+  {
+    "observation_date": "2013-08-01",
+    "RATE": "0.71"
+  },
+  {
+    "observation_date": "2013-09-01",
+    "RATE": "0.83"
+  },
+  {
+    "observation_date": "2013-10-01",
+    "RATE": "0.77"
+  },
+  {
+    "observation_date": "2013-11-01",
+    "RATE": "0.91"
+  },
+  {
+    "observation_date": "2013-12-01",
+    "RATE": "0.99"
+  },
+  {
+    "observation_date": "2014-01-01",
+    "RATE": "0.97"
+  },
+  {
+    "observation_date": "2014-02-01",
+    "RATE": "0.75"
+  },
+  {
+    "observation_date": "2014-03-01",
+    "RATE": "0.97"
+  },
+  {
+    "observation_date": "2014-04-01",
+    "RATE": "0.88"
+  },
+  {
+    "observation_date": "2014-05-01",
+    "RATE": "0.95"
+  },
+  {
+    "observation_date": "2014-06-01",
+    "RATE": "0.87"
+  },
+  {
+    "observation_date": "2014-07-01",
+    "RATE": "0.83"
+  },
+  {
+    "observation_date": "2014-08-01",
+    "RATE": "0.96"
+  },
+  {
+    "observation_date": "2014-09-01",
+    "RATE": "0.82"
+  },
+  {
+    "observation_date": "2014-10-01",
+    "RATE": "0.67"
+  },
+  {
+    "observation_date": "2014-11-01",
+    "RATE": "0.98"
+  },
+  {
+    "observation_date": "2014-12-01",
+    "RATE": "0.81"
+  },
+  {
+    "observation_date": "2015-01-01",
+    "RATE": "-0.52"
+  },
+  {
+    "observation_date": "2015-02-01",
+    "RATE": "-0.60"
+  },
+  {
+    "observation_date": "2015-03-01",
+    "RATE": "-0.59"
+  },
+  {
+    "observation_date": "2015-04-01",
+    "RATE": "-0.64"
+  },
+  {
+    "observation_date": "2015-05-01",
+    "RATE": "-0.61"
+  },
+  {
+    "observation_date": "2015-06-01",
+    "RATE": "-0.53"
+  },
+  {
+    "observation_date": "2015-07-01",
+    "RATE": "-0.68"
+  },
+  {
+    "observation_date": "2015-08-01",
+    "RATE": "-0.40"
+  },
+  {
+    "observation_date": "2015-09-01",
+    "RATE": "-0.47"
+  },
+  {
+    "observation_date": "2015-10-01",
+    "RATE": "-0.50"
+  },
+  {
+    "observation_date": "2015-11-01",
+    "RATE": "-0.48"
+  },
+  {
+    "observation_date": "2015-12-01",
+    "RATE": "-0.45"
+  },
+  {
+    "observation_date": "2016-01-01",
+    "RATE": "-0.60"
+  },
+  {
+    "observation_date": "2016-02-01",
+    "RATE": "-0.53"
+  },
+  {
+    "observation_date": "2016-03-01",
+    "RATE": "-0.64"
+  },
+  {
+    "observation_date": "2016-04-01",
+    "RATE": "-0.40"
+  },
+  {
+    "observation_date": "2016-05-01",
+    "RATE": "-0.51"
+  },
+  {
+    "observation_date": "2016-06-01",
+    "RATE": "-0.50"
+  },
+  {
+    "observation_date": "2016-07-01",
+    "RATE": "-0.41"
+  },
+  {
+    "observation_date": "2016-08-01",
+    "RATE": "-0.50"
+  },
+  {
+    "observation_date": "2016-09-01",
+    "RATE": "-0.42"
+  },
+  {
+    "observation_date": "2016-10-01",
+    "RATE": "-0.62"
+  },
+  {
+    "observation_date": "2016-11-01",
+    "RATE": "-0.36"
+  },
+  {
+    "observation_date": "2016-12-01",
+    "RATE": "-0.51"
+  },
+  {
+    "observation_date": "2017-01-01",
+    "RATE": "-0.48"
+  },
+  {
+    "observation_date": "2017-02-01",
+    "RATE": "-0.34"
+  },
+  {
+    "observation_date": "2017-03-01",
+    "RATE": "-0.45"
+  },
+  {
+    "observation_date": "2017-04-01",
+    "RATE": "-0.60"
+  },
+  {
+    "observation_date": "2017-05-01",
+    "RATE": "-0.50"
+  },
+  {
+    "observation_date": "2017-06-01",
+    "RATE": "-0.69"
+  },
+  {
+    "observation_date": "2017-07-01",
+    "RATE": "-0.42"
+  },
+  {
+    "observation_date": "2017-08-01",
+    "RATE": "-0.63"
+  },
+  {
+    "observation_date": "2017-09-01",
+    "RATE": "-0.44"
+  },
+  {
+    "observation_date": "2017-10-01",
+    "RATE": "-0.35"
+  },
+  {
+    "observation_date": "2017-11-01",
+    "RATE": "-0.31"
+  },
+  {
+    "observation_date": "2017-12-01",
+    "RATE": "-0.59"
+  },
+  {
+    "observation_date": "2018-01-01",
+    "RATE": "-0.42"
+  },
+  {
+    "observation_date": "2018-02-01",
+    "RATE": "-0.49"
+  },
+  {
+    "observation_date": "2018-03-01",
+    "RATE": "-0.42"
+  },
+  {
+    "observation_date": "2018-04-01",
+    "RATE": "-0.53"
+  },
+  {
+    "observation_date": "2018-05-01",
+    "RATE": "-0.64"
+  },
+  {
+    "observation_date": "2018-06-01",
+    "RATE": "-0.51"
+  },
+  {
+    "observation_date": "2018-07-01",
+    "RATE": "-0.60"
+  },
+  {
+    "observation_date": "2018-08-01",
+    "RATE": "-0.55"
+  },
+  {
+    "observation_date": "2018-09-01",
+    "RATE": "-0.40"
+  },
+  {
+    "observation_date": "2018-10-01",
+    "RATE": "-0.52"
+  },
+  {
+    "observation_date": "2018-11-01",
+    "RATE": "-0.57"
+  },
+  {
+    "observation_date": "2018-12-01",
+    "RATE": "-0.41"
+  },
+  {
+    "observation_date": "2019-01-01",
+    "RATE": "-0.36"
+  },
+  {
+    "observation_date": "2019-02-01",
+    "RATE": "-0.41"
+  },
+  {
+    "observation_date": "2019-03-01",
+    "RATE": "-0.53"
+  },
+  {
+    "observation_date": "2019-04-01",
+    "RATE": "-0.40"
+  },
+  {
+    "observation_date": "2019-05-01",
+    "RATE": "-0.47"
+  },
+  {
+    "observation_date": "2019-06-01",
+    "RATE": "-0.51"
+  },
+  {
+    "observation_date": "2019-07-01",
+    "RATE": "-0.42"
+  },
+  {
+    "observation_date": "2019-08-01",
+    "RATE": "-0.64"
+  },
+  {
+    "observation_date": "2019-09-01",
+    "RATE": "-0.60"
+  },
+  {
+    "observation_date": "2019-10-01",
+    "RATE": "-0.62"
+  },
+  {
+    "observation_date": "2019-11-01",
+    "RATE": "-0.59"
+  },
+  {
+    "observation_date": "2019-12-01",
+    "RATE": "-0.56"
+  },
+  {
+    "observation_date": "2020-01-01",
+    "RATE": "-0.38"
+  },
+  {
+    "observation_date": "2020-02-01",
+    "RATE": "-0.47"
+  },
+  {
+    "observation_date": "2020-03-01",
+    "RATE": "-0.42"
+  },
+  {
+    "observation_date": "2020-04-01",
+    "RATE": "-0.50"
+  },
+  {
+    "observation_date": "2020-05-01",
+    "RATE": "-0.37"
+  },
+  {
+    "observation_date": "2020-06-01",
+    "RATE": "-0.48"
+  },
+  {
+    "observation_date": "2020-07-01",
+    "RATE": "-0.51"
+  },
+  {
+    "observation_date": "2020-08-01",
+    "RATE": "-0.44"
+  },
+  {
+    "observation_date": "2020-09-01",
+    "RATE": "-0.35"
+  },
+  {
+    "observation_date": "2020-10-01",
+    "RATE": "-0.30"
+  },
+  {
+    "observation_date": "2020-11-01",
+    "RATE": "-0.38"
+  },
+  {
+    "observation_date": "2020-12-01",
+    "RATE": "-0.34"
+  },
+  {
+    "observation_date": "2021-01-01",
+    "RATE": "-0.40"
+  },
+  {
+    "observation_date": "2021-02-01",
+    "RATE": "-0.44"
+  },
+  {
+    "observation_date": "2021-03-01",
+    "RATE": "-0.47"
+  },
+  {
+    "observation_date": "2021-04-01",
+    "RATE": "-0.51"
+  },
+  {
+    "observation_date": "2021-05-01",
+    "RATE": "-0.37"
+  },
+  {
+    "observation_date": "2021-06-01",
+    "RATE": "-0.52"
+  },
+  {
+    "observation_date": "2021-07-01",
+    "RATE": "-0.36"
+  },
+  {
+    "observation_date": "2021-08-01",
+    "RATE": "-0.48"
+  },
+  {
+    "observation_date": "2021-09-01",
+    "RATE": "-0.45"
+  },
+  {
+    "observation_date": "2021-10-01",
+    "RATE": "-0.30"
+  },
+  {
+    "observation_date": "2021-11-01",
+    "RATE": "-0.45"
+  },
+  {
+    "observation_date": "2021-12-01",
+    "RATE": "-0.28"
+  },
+  {
+    "observation_date": "2022-01-01",
+    "RATE": "0.68"
+  },
+  {
+    "observation_date": "2022-02-01",
+    "RATE": "0.83"
+  },
+  {
+    "observation_date": "2022-03-01",
+    "RATE": "0.65"
+  },
+  {
+    "observation_date": "2022-04-01",
+    "RATE": "0.88"
+  },
+  {
+    "observation_date": "2022-05-01",
+    "RATE": "0.60"
+  },
+  {
+    "observation_date": "2022-06-01",
+    "RATE": "0.91"
+  },
+  {
+    "observation_date": "2022-07-01",
+    "RATE": "0.59"
+  },
+  {
+    "observation_date": "2022-08-01",
+    "RATE": "0.70"
+  },
+  {
+    "observation_date": "2022-09-01",
+    "RATE": "0.70"
+  },
+  {
+    "observation_date": "2022-10-01",
+    "RATE": "0.69"
+  },
+  {
+    "observation_date": "2022-11-01",
+    "RATE": "0.75"
+  },
+  {
+    "observation_date": "2022-12-01",
+    "RATE": "1.02"
+  },
+  {
+    "observation_date": "2023-01-01",
+    "RATE": "0.91"
+  },
+  {
+    "observation_date": "2023-02-01",
+    "RATE": "1.06"
+  },
+  {
+    "observation_date": "2023-03-01",
+    "RATE": "0.88"
+  },
+  {
+    "observation_date": "2023-04-01",
+    "RATE": "0.99"
+  },
+  {
+    "observation_date": "2023-05-01",
+    "RATE": "0.80"
+  },
+  {
+    "observation_date": "2023-06-01",
+    "RATE": "0.85"
+  },
+  {
+    "observation_date": "2023-07-01",
+    "RATE": "0.88"
+  },
+  {
+    "observation_date": "2023-08-01",
+    "RATE": "0.89"
+  },
+  {
+    "observation_date": "2023-09-01",
+    "RATE": "0.80"
+  },
+  {
+    "observation_date": "2023-10-01",
+    "RATE": "0.81"
+  },
+  {
+    "observation_date": "2023-11-01",
+    "RATE": "0.83"
+  },
+  {
+    "observation_date": "2023-12-01",
+    "RATE": "0.90"
+  },
+  {
+    "observation_date": "2024-01-01",
+    "RATE": "0.54"
+  },
+  {
+    "observation_date": "2024-02-01",
+    "RATE": "0.47"
+  },
+  {
+    "observation_date": "2024-03-01",
+    "RATE": "0.53"
+  },
+  {
+    "observation_date": "2024-04-01",
+    "RATE": "0.44"
+  },
+  {
+    "observation_date": "2024-05-01",
+    "RATE": "0.53"
+  },
+  {
+    "observation_date": "2024-06-01",
+    "RATE": "0.51"
+  },
+  {
+    "observation_date": "2024-07-01",
+    "RATE": "0.41"
+  },
+  {
+    "observation_date": "2024-08-01",
+    "RATE": "0.40"
+  },
+  {
+    "observation_date": "2024-09-01",
+    "RATE": "0.49"
+  },
+  {
+    "observation_date": "2024-10-01",
+    "RATE": "0.57"
+  },
+  {
+    "observation_date": "2024-11-01",
+    "RATE": "0.53"
+  },
+  {
+    "observation_date": "2024-12-01",
+    "RATE": "0.56"
+  }
 ]
