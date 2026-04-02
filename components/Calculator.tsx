@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import GrowthChart from './GrowthChart';
+import CombinedChart from './CombinedChart';
 
 interface YearlyInflation {
   year: number;
@@ -43,15 +43,19 @@ interface CalculationResult {
   };
 }
 
-export default function Calculator() {
-  const currentYear = new Date().getFullYear();
-  const [amount, setAmount] = useState<number>(1);
+interface CalculatorProps {
+  startYear: number;
+  endYear: number;
+  onStartYearChange: (year: number) => void;
+  onEndYearChange: (year: number) => void;
+}
 
-  // Separate input values (can be empty) from actual valid values used for calculation
-  const [startYearInput, setStartYearInput] = useState<string>('1970');
-  const [endYearInput, setEndYearInput] = useState<string>(currentYear.toString());
-  const [startYear, setStartYear] = useState<number>(1970);
-  const [endYear, setEndYear] = useState<number>(currentYear);
+export default function Calculator({ startYear, endYear, onStartYearChange, onEndYearChange }: CalculatorProps) {
+  const currentYear = new Date().getFullYear();
+  const [amount, setAmount] = useState<number>(100);
+
+  const [startYearInput, setStartYearInput] = useState<string>(startYear.toString());
+  const [endYearInput, setEndYearInput] = useState<string>(endYear.toString());
 
   const [result, setResult] = useState<CalculationResult | null>(null);
   const [loading, setLoading] = useState(false);
@@ -60,35 +64,28 @@ export default function Calculator() {
   const handleCalculate = async () => {
     setLoading(true);
     setError(null);
-
     try {
       const response = await fetch(
         `/api/calculate?amount=${amount}&startYear=${startYear}&endYear=${endYear}`
       );
-
       const data = await response.json();
-
       if (!response.ok) {
         setError(data.error || 'Failed to calculate');
-        // Don't clear result - keep last valid result displayed
         return;
       }
-
       setResult(data);
-    } catch (err) {
+    } catch {
       setError('An error occurred while calculating');
-      // Don't clear result - keep last valid result displayed
     } finally {
       setLoading(false);
     }
   };
 
-  // Update valid year values when input changes to a valid number
   const handleStartYearChange = (value: string) => {
     setStartYearInput(value);
     const num = parseInt(value);
     if (!isNaN(num) && num >= 1934 && num <= currentYear) {
-      setStartYear(num);
+      onStartYearChange(num);
     }
   };
 
@@ -96,184 +93,157 @@ export default function Calculator() {
     setEndYearInput(value);
     const num = parseInt(value);
     if (!isNaN(num) && num >= 1934 && num <= currentYear) {
-      setEndYear(num);
+      onEndYearChange(num);
     }
   };
 
-  // Calculate on component mount and when valid inputs change
   useEffect(() => {
     handleCalculate();
   }, [amount, startYear, endYear]);
 
-  const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat('en-US', {
+  const fmt = (value: number) =>
+    new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     }).format(value);
-  };
+
+  const inputClass =
+    'border-b-2 border-[var(--foreground)] bg-transparent text-[var(--foreground)] font-semibold outline-none text-xl w-24 text-center pb-0.5 focus:border-[var(--accent-inflation)] transition-colors';
 
   return (
-    <div className="space-y-8">
-      {/* Input Form */}
-      <div className="bg-card-bg dark:bg-gray-800 rounded-2xl shadow-apple dark:shadow-lg p-4 sm:p-8">
-        <h2 className="text-2xl sm:text-3xl font-semibold mb-8">Calculate Historical Value</h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {/* Amount Input */}
-          <div>
-            <label htmlFor="amount" className="block text-sm font-medium text-secondary dark:text-gray-400 mb-3">
-              Amount ($)
-            </label>
-            <input
-              id="amount"
+    <div className="space-y-10">
+      {/* Fill-in-the-blank input */}
+      <div className="bg-[var(--card-bg)] border border-[var(--border)] rounded-sm p-8 md:p-10">
+        <p className="text-xl md:text-2xl font-light text-[var(--foreground)] leading-relaxed">
+          If you had{' '}
+          <span className="inline-flex items-baseline gap-1">
+            $<input
               type="number"
               min="0.01"
-              step="0.01"
+              step="1"
               value={amount}
               onChange={(e) => setAmount(parseFloat(e.target.value) || 0)}
-              className="w-full px-4 py-3 border border-border dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-accent focus:border-transparent bg-white dark:bg-gray-700 text-base transition-apple"
+              className={inputClass}
+              style={{ width: '110px' }}
             />
-          </div>
-
-          {/* Start Year Input */}
-          <div>
-            <label htmlFor="startYear" className="block text-sm font-medium text-secondary dark:text-gray-400 mb-3">
-              Start Year
-            </label>
-            <input
-              id="startYear"
-              type="number"
-              min="1934"
-              max={currentYear}
-              value={startYearInput}
-              onChange={(e) => handleStartYearChange(e.target.value)}
-              placeholder="e.g., 1970"
-              className="w-full px-4 py-3 border border-border dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-accent focus:border-transparent bg-white dark:bg-gray-700 transition-apple"
-            />
-          </div>
-
-          {/* End Year Input */}
-          <div>
-            <label htmlFor="endYear" className="block text-sm font-medium text-secondary dark:text-gray-400 mb-3">
-              End Year
-            </label>
-            <input
-              id="endYear"
-              type="number"
-              min="1934"
-              max={currentYear}
-              value={endYearInput}
-              onChange={(e) => handleEndYearChange(e.target.value)}
-              placeholder={`e.g., ${currentYear}`}
-              className="w-full px-4 py-3 border border-border dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-accent focus:border-transparent bg-white dark:bg-gray-700 transition-apple"
-            />
-          </div>
-        </div>
+          </span>{' '}
+          in{' '}
+          <input
+            type="number"
+            min="1934"
+            max={currentYear}
+            value={startYearInput}
+            onChange={(e) => handleStartYearChange(e.target.value)}
+            className={inputClass}
+          />
+          , by{' '}
+          <input
+            type="number"
+            min="1934"
+            max={currentYear}
+            value={endYearInput}
+            onChange={(e) => handleEndYearChange(e.target.value)}
+            className={inputClass}
+          />{' '}
+          it would be worth...
+        </p>
       </div>
 
-      {/* Error Display */}
+      {/* Error */}
       {error && (
-        <div className="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-2xl p-4 shadow-apple dark:shadow-lg">
-          <p className="text-red-800 dark:text-red-200 font-medium">{error}</p>
-        </div>
-      )}
-
-      {/* Loading State */}
-      {loading && (
-        <div className="text-center py-8">
-          <p className="text-gray-600 dark:text-gray-400">Calculating...</p>
-        </div>
+        <p className="text-sm text-[var(--accent-inflation)]">{error}</p>
       )}
 
       {/* Results */}
       {result && !loading && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          {/* Inflation Result */}
-          <div className="bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 rounded-2xl shadow-apple dark:shadow-lg p-6 sm:p-8 border border-red-100 dark:border-red-800">
-            <h3 className="text-lg sm:text-xl font-semibold mb-6 text-red-900 dark:text-red-100">
-              Inflation Adjustment
-            </h3>
-            <div className="space-y-6">
-              <div>
-                <p className="text-sm font-medium text-secondary dark:text-gray-400 mb-2">Original Amount ({result.inflation.startYear})</p>
-                <p className="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-white break-words">
-                  {formatCurrency(result.inflation.originalAmount)}
-                </p>
-              </div>
-              <div>
-                <p className="text-sm font-medium text-secondary dark:text-gray-400 mb-2">
-                  Equivalent in {result.inflation.endYear}
-                </p>
-                <p className="text-3xl sm:text-4xl font-bold text-red-600 dark:text-red-400 break-words">
-                  {formatCurrency(result.inflation.adjustedValue)}
-                </p>
-              </div>
-              <div className="pt-6 border-t border-red-200 dark:border-red-800">
-                <p className="text-sm font-medium text-secondary dark:text-gray-400 mb-2">Total Inflation</p>
-                <p className="text-2xl font-semibold text-gray-900 dark:text-white">
-                  {result.inflation.inflationRate.toFixed(2)}%
-                </p>
-              </div>
-              <div className="text-xs font-medium text-secondary dark:text-gray-500">
-                CPI: {result.inflation.cpiStart} → {result.inflation.cpiEnd}
-              </div>
+        <>
+          {/* Callout cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-[var(--card-bg)] border border-[var(--border)] rounded-sm p-8">
+              <p className="text-xs font-semibold uppercase tracking-widest text-[var(--secondary)] mb-4">
+                Adjusted for inflation (CPI)
+              </p>
+              <p
+                className="font-serif font-bold leading-none mb-4 break-words"
+                style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'var(--accent-inflation)' }}
+              >
+                {fmt(result.inflation.adjustedValue)}
+              </p>
+              <p className="text-sm text-[var(--secondary)] leading-relaxed">
+                Inflation eroded{' '}
+                <strong className="text-[var(--foreground)]">
+                  {(100 - (result.inflation.originalAmount / result.inflation.adjustedValue) * 100).toFixed(1)}%
+                </strong>{' '}
+                of purchasing power.{' '}
+                Total inflation: {result.inflation.inflationRate.toFixed(1)}%.
+              </p>
             </div>
 
-            {result.inflation.yearByYear && result.inflation.yearByYear.length > 0 && (
-              <GrowthChart
-                title="Inflation Growth Over Time"
-                data={result.inflation.yearByYear.map(y => ({ year: y.year, value: y.value }))}
-                color="rgb(220, 38, 38)"
+            <div className="bg-[var(--card-bg)] border border-[var(--border)] rounded-sm p-8">
+              <p className="text-xs font-semibold uppercase tracking-widest text-[var(--secondary)] mb-4">
+                Invested in Treasury Bills
+              </p>
+              <p
+                className="font-serif font-bold leading-none mb-4 break-words"
+                style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'var(--accent-tbill)' }}
+              >
+                {fmt(result.investment.finalValue)}
+              </p>
+              <p className="text-sm text-[var(--secondary)] leading-relaxed">
+                Compounding at an average{' '}
+                <strong className="text-[var(--foreground)]">
+                  {result.investment.averageRate.toFixed(2)}% annually
+                </strong>{' '}
+                over {result.investment.endYear - result.investment.startYear} years.
+                Total return: {result.investment.totalReturnPercentage.toFixed(1)}%.
+              </p>
+            </div>
+          </div>
+
+          {/* Verdict */}
+          <div
+            className="rounded-sm px-8 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+            style={{ background: 'var(--verdict-bg)' }}
+          >
+            <div>
+              <p className="text-xs uppercase tracking-widest mb-1" style={{ color: '#666' }}>
+                Bottom line
+              </p>
+              <p
+                className="font-serif font-bold text-xl"
+                style={{ color: result.comparison.investmentBeatsInflation ? '#4ade80' : '#f87171' }}
+              >
+                {result.comparison.investmentBeatsInflation
+                  ? `T-Bills outran inflation by ${fmt(result.comparison.realGain)} (${result.comparison.realGainPercentage.toFixed(1)}%)`
+                  : `Inflation outpaced T-Bills by ${fmt(Math.abs(result.comparison.realGain))}`}
+              </p>
+            </div>
+            <p className="text-sm font-serif italic" style={{ color: '#555' }}>
+              {result.inflation.startYear} – {result.inflation.endYear}
+            </p>
+          </div>
+
+          {/* Combined chart */}
+          {result.inflation.yearByYear?.length > 0 && result.investment.yearByYear?.length > 0 && (
+            <div className="bg-[var(--card-bg)] border border-[var(--border)] rounded-sm p-8">
+              <p className="text-xs font-semibold uppercase tracking-widest text-[var(--secondary)] mb-6">
+                {fmt(result.inflation.originalAmount)} invested in {result.inflation.startYear} — two paths to {result.inflation.endYear}
+              </p>
+              <CombinedChart
+                inflationData={result.inflation.yearByYear.map(y => ({ year: y.year, value: y.value }))}
+                investmentData={result.investment.yearByYear.map(y => ({ year: y.year, value: y.value }))}
                 startingAmount={result.inflation.originalAmount}
               />
-            )}
-          </div>
-
-          {/* Investment Result */}
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl shadow-apple dark:shadow-lg p-6 sm:p-8 border border-green-100 dark:border-green-800">
-            <h3 className="text-lg sm:text-xl font-semibold mb-6 text-green-900 dark:text-green-100">
-              Treasury Bill Investment
-            </h3>
-            <div className="space-y-6">
-              <div>
-                <p className="text-sm font-medium text-secondary dark:text-gray-400 mb-2">Original Investment ({result.investment.startYear})</p>
-                <p className="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-white break-words">
-                  {formatCurrency(result.investment.originalAmount)}
-                </p>
-              </div>
-              <div>
-                <p className="text-sm font-medium text-secondary dark:text-gray-400 mb-2">
-                  Value in {result.investment.endYear}
-                </p>
-                <p className="text-3xl sm:text-4xl font-bold text-green-600 dark:text-green-400 break-words">
-                  {formatCurrency(result.investment.finalValue)}
-                </p>
-              </div>
-              <div className="pt-6 border-t border-green-200 dark:border-green-800">
-                <p className="text-sm font-medium text-secondary dark:text-gray-400 mb-2">Total Return</p>
-                <p className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white break-words">
-                  {formatCurrency(result.investment.totalReturn)} ({result.investment.totalReturnPercentage.toFixed(2)}%)
-                </p>
-              </div>
-              <div className="text-xs font-medium text-secondary dark:text-gray-500">
-                Avg. annual rate: {result.investment.averageRate.toFixed(2)}%
-              </div>
             </div>
-
-            {result.investment.yearByYear && result.investment.yearByYear.length > 0 && (
-              <GrowthChart
-                title="Investment Growth Over Time"
-                data={result.investment.yearByYear.map(y => ({ year: y.year, value: y.value }))}
-                color="rgb(22, 163, 74)"
-                startingAmount={result.investment.originalAmount}
-              />
-            )}
-          </div>
-        </div>
+          )}
+        </>
       )}
 
+      {loading && (
+        <p className="text-sm text-[var(--secondary)]">Calculating...</p>
+      )}
     </div>
   );
 }

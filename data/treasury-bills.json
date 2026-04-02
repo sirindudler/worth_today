@@ -4406,5 +4406,25 @@
   {
     "observation_date": "2025-10-01",
     "TB3MS": "3.82"
+  },
+  {
+    "observation_date": "2025-11-01",
+    "TB3MS": "3.78"
+  },
+  {
+    "observation_date": "2025-12-01",
+    "TB3MS": "3.59"
+  },
+  {
+    "observation_date": "2026-01-01",
+    "TB3MS": "3.57"
+  },
+  {
+    "observation_date": "2026-02-01",
+    "TB3MS": "3.60"
+  },
+  {
+    "observation_date": "2026-03-01",
+    "TB3MS": "3.61"
   }
 ]

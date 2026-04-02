@@ -183,9 +183,9 @@ export function getCPIDataByYear(startYear?: number, endYear?: number): Array<{y
   });
 
   return filteredYears.map(year => {
-    // Get average CPI for the year
+    // Get average CPI for the year, excluding missing/empty values
     const yearData = cpiDataTyped.filter((item) =>
-      item.observation_date.startsWith(`${year}-`) && item.CPIAUCSL !== '.'
+      item.observation_date.startsWith(`${year}-`) && item.CPIAUCSL !== '.' && item.CPIAUCSL !== '' && item.CPIAUCSL != null
     );
 
     const avgCPI = yearData.reduce((sum, item) => sum + parseFloat(item.CPIAUCSL), 0) / yearData.length;
