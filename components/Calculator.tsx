@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import CombinedChart from './CombinedChart';
+import { calculateComparison } from '@/lib/calculations';
+import { getDataRange } from '@/lib/dataLoader';
 
 interface YearlyInflation {
   year: number;
@@ -61,21 +63,22 @@ export default function Calculator({ startYear, endYear, onStartYearChange, onEn
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleCalculate = async () => {
+  const handleCalculate = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(
-        `/api/calculate?amount=${amount}&startYear=${startYear}&endYear=${endYear}`
-      );
-      const data = await response.json();
-      if (!response.ok) {
-        setError(data.error || 'Failed to calculate');
+      if (amount <= 0) { setError('Invalid amount.'); return; }
+      if (startYear >= endYear) { setError('Start year must be before end year.'); return; }
+      const dataRange = getDataRange();
+      if (startYear < dataRange.minYear || endYear > dataRange.maxYear) {
+        setError(`Years must be between ${dataRange.minYear} and ${dataRange.maxYear}.`);
         return;
       }
-      setResult(data);
+      const result = calculateComparison(amount, startYear, endYear);
+      if (!result) { setError('Missing data for the specified years.'); return; }
+      setResult(result);
     } catch {
-      setError('An error occurred while calculating');
+      setError('An error occurred while calculating.');
     } finally {
       setLoading(false);
     }
