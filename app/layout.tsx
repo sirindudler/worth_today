@@ -16,14 +16,21 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Worth Today - Inflation & Investment Calculator",
-  description: "Calculate the real value of money over time using inflation adjustment and Treasury Bill investment returns",
-  keywords: "inflation calculator, Treasury Bill calculator, CPI calculator, investment calculator, money value calculator, purchasing power, FRED data",
-  authors: [{ name: "Worth Today" }],
+  title: "Worth Today",
+  description: "Historical CPI vs. T-Bill returns. See what your money was really worth — and what it could have become.",
+  keywords: "inflation calculator, Treasury Bill calculator, CPI calculator, purchasing power, FRED data, historical money value",
+  authors: [{ name: "Sirin Dudler" }],
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: "Worth Today",
+    title: "Worth Today",
+    description: "Historical CPI vs. T-Bill returns. See what your money was really worth — and what it could have become.",
+  },
+  twitter: {
+    card: "summary",
+    title: "Worth Today",
+    description: "Historical CPI vs. T-Bill returns. See what your money was really worth — and what it could have become.",
   },
   robots: {
     index: true,
