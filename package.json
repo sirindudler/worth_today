@@ -23,7 +23,7 @@
   "homepage": "https://github.com/sirindudler/worth_today#readme",
   "dependencies": {
     "chart.js": "^4.5.1",
-    "next": "^16.0.1",
+    "next": "^16.2.3",
     "react": "^19.2.0",
     "react-chartjs-2": "^5.3.1",
     "react-dom": "^19.2.0"
